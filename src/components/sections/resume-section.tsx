@@ -1,7 +1,11 @@
+"use client";
+
+import { useState } from "react";
 import { Section, SectionTitle, SectionSubtitle } from "@/components/section-wrapper";
 import { Card, CardContent } from "@/components/ui/card";
-import { Briefcase, GraduationCap } from "lucide-react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import { Briefcase, GraduationCap, Star, Award, User } from "lucide-react";
 
 const experienceData = [
   {
@@ -45,59 +49,147 @@ const educationData = [
   },
 ];
 
-const TimelineItem = ({ data, isEducation = false }: { data: { date: string; title: string; company?: string; institution?: string; description: string; }; isEducation?: boolean }) => (
-  <div className="relative pl-8">
-    <div className="absolute left-0 top-1 h-6 w-6 rounded-full bg-primary/20 flex items-center justify-center">
-      <div className="h-3 w-3 rounded-full bg-primary" />
-    </div>
-    <p className="text-sm text-muted-foreground">{data.date}</p>
-    <h3 className="mt-1 font-headline text-xl font-semibold">{data.title}</h3>
-    <h4 className="mt-1 text-md font-medium text-primary">{isEducation ? data.institution : data.company}</h4>
-    <p className="mt-2 text-muted-foreground">{data.description}</p>
-  </div>
-);
+const skillsData = [
+  { category: "Programming Languages", skills: ["Python", "Java", "C"] },
+  { category: "Databases", skills: ["SQL", "PostgreSQL", "MongoDB"] },
+  { category: "Frameworks & Technologies", skills: ["React.js", "React Native", "Node.js", "Express.js", "Firebase"] },
+  { category: "Development Tools", skills: ["Git", "GitHub", "HTML", "CSS"] },
+  { category: "Soft Skills", skills: ["Problem Solving", "Communication", "Quick Learning", "Analytical Thinking", "Smart Work", "Patience"] },
+];
+
+const certificationsData = [
+  { title: "Google UX Design", issuer: "Google" },
+  { title: "Google Data Analytics", issuer: "Google" },
+  { title: "Artificial Intelligence", issuer: "Infosys" },
+  { title: "Python Essentials", issuer: "Cisco" },
+  { title: "Cyber Security", issuer: "Cisco" },
+];
+
+const sections = {
+  experience: {
+    title: "My Experience",
+    subtitle: "I've gained hands-on experience through internships, working on real-world projects and developing my technical skills. These opportunities allowed me to contribute to impactful solutions while learning and growing in tech.",
+    icon: <Briefcase className="mr-2 h-4 w-4" />,
+    content: (
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {experienceData.map((item, index) => (
+          <Card key={index} className="bg-muted/30">
+            <CardContent className="p-6">
+              <p className="text-sm text-primary">{item.date}</p>
+              <h3 className="mt-2 font-headline text-xl font-semibold">{item.title}</h3>
+              <p className="mt-1 text-muted-foreground">{item.company}</p>
+              <p className="mt-4 text-sm text-muted-foreground">{item.description}</p>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    ),
+  },
+  education: {
+    title: "My Education",
+    subtitle: "My academic journey has provided me with a strong foundation in computer science and a passion for continuous learning.",
+    icon: <GraduationCap className="mr-2 h-4 w-4" />,
+    content: (
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {educationData.map((item, index) => (
+          <Card key={index} className="bg-muted/30">
+            <CardContent className="p-6">
+              <p className="text-sm text-primary">{item.date}</p>
+              <h3 className="mt-2 font-headline text-lg font-semibold">{item.title}</h3>
+              <p className="mt-1 text-muted-foreground">{item.institution}</p>
+              <p className="mt-4 text-sm text-muted-foreground">{item.description}</p>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    ),
+  },
+  skills: {
+    title: "My Skills",
+    subtitle: "A showcase of my technical and soft skills, demonstrating my ability to tackle diverse challenges and collaborate effectively.",
+    icon: <Star className="mr-2 h-4 w-4" />,
+    content: (
+       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {skillsData.map((skillGroup) => (
+          <Card key={skillGroup.category} className="bg-muted/30">
+            <CardContent className="p-6">
+              <h3 className="font-headline text-lg font-semibold text-primary">{skillGroup.category}</h3>
+              <ul className="mt-4 list-disc list-inside text-muted-foreground space-y-2">
+                {skillGroup.skills.map((skill) => (
+                  <li key={skill}>{skill}</li>
+                ))}
+              </ul>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    ),
+  },
+  certifications: {
+    title: "My Certifications",
+    subtitle: "I am committed to lifelong learning and professional development, as demonstrated by these certifications.",
+    icon: <Award className="mr-2 h-4 w-4" />,
+    content: (
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {certificationsData.map((cert, index) => (
+          <Card key={index} className="bg-muted/30">
+            <CardContent className="p-6 text-center">
+              <Award className="h-12 w-12 text-primary mx-auto" />
+              <h3 className="mt-4 font-headline text-lg font-semibold">{cert.title}</h3>
+              <p className="mt-1 text-muted-foreground">{cert.issuer}</p>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    ),
+  },
+  "about-me": {
+    title: "About Me",
+    subtitle: "A brief overview of who I am as a professional and an individual.",
+    icon: <User className="mr-2 h-4 w-4" />,
+    content: (
+      <Card className="bg-muted/30">
+        <CardContent className="p-8">
+          <p className="text-lg text-muted-foreground leading-relaxed">
+            I am a passionate and results-oriented Computer Science student with a strong foundation in full-stack development and a growing interest in data science and artificial intelligence. My internship experiences have equipped me with practical skills in web development, application security, and machine learning. I thrive in collaborative environments and am dedicated to building user-centric, high-quality digital solutions. I am a quick learner, a creative problem-solver, and I am always eager to take on new challenges.
+          </p>
+        </CardContent>
+      </Card>
+    ),
+  },
+};
+
+type SectionKey = keyof typeof sections;
 
 export default function ResumeSection() {
+  const [activeTab, setActiveTab] = useState<SectionKey>("experience");
+
+  const ActiveContent = sections[activeTab];
+
   return (
-    <Section id="resume">
-      <SectionTitle>My Resume</SectionTitle>
-      <SectionSubtitle>
-        A summary of my professional experience and academic background.
-      </SectionSubtitle>
-      <Tabs defaultValue="experience" className="mt-12 max-w-4xl mx-auto">
-        <TabsList className="grid w-full grid-cols-2">
-          <TabsTrigger value="experience">
-            <Briefcase className="mr-2 h-4 w-4" />
-            Experience
-          </TabsTrigger>
-          <TabsTrigger value="education">
-            <GraduationCap className="mr-2 h-4 w-4" />
-            Education
-          </TabsTrigger>
-        </TabsList>
-        <TabsContent value="experience">
-          <Card>
-            <CardContent className="p-8">
-              <div className="space-y-8 relative before:absolute before:inset-0 before:ml-3 before:w-px before:bg-border">
-                {experienceData.map((item, index) => (
-                  <TimelineItem key={index} data={item} />
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-        </TabsContent>
-        <TabsContent value="education">
-          <Card>
-            <CardContent className="p-8">
-              <div className="space-y-8 relative before:absolute before:inset-0 before:ml-3 before:w-px before:bg-border">
-                {educationData.map((item, index) => (
-                  <TimelineItem key={index} data={item} isEducation />
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-        </TabsContent>
-      </Tabs>
+    <Section id="resume" className="bg-background">
+       <div className="grid grid-cols-2 lg:grid-cols-5 gap-4 mb-12 max-w-4xl mx-auto">
+        {(Object.keys(sections) as SectionKey[]).map((tab) => (
+          <Button
+            key={tab}
+            onClick={() => setActiveTab(tab)}
+            variant={activeTab === tab ? "default" : "outline"}
+            className={cn("w-full justify-center capitalize", activeTab !== tab && "bg-muted/50 dark:bg-card hover:bg-muted dark:hover:bg-muted/50")}
+          >
+            {sections[tab].icon}
+            {tab.replace("-", " ")}
+          </Button>
+        ))}
+      </div>
+
+      <div className="mt-8 text-center animate-in fade-in duration-500">
+        <SectionTitle>{ActiveContent.title}</SectionTitle>
+        <SectionSubtitle>{ActiveContent.subtitle}</SectionSubtitle>
+      </div>
+
+      <div className="mt-12 max-w-6xl mx-auto animate-in fade-in slide-in-from-bottom-8 duration-700">
+        {ActiveContent.content}
+      </div>
     </Section>
   );
 }

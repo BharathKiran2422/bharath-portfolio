@@ -1,14 +1,7 @@
 import Image from "next/image";
-import { Section, SectionTitle, SectionSubtitle } from "@/components/section-wrapper";
+import { Section } from "@/components/section-wrapper";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Award, Briefcase, Code, Paintbrush } from "lucide-react";
-
-const stats = [
-  { value: "4+", label: "Years Experience" },
-  { value: "100+", label: "Projects Completed" },
-  { value: "50+", label: "Happy Clients" },
-  { value: "12", label: "Awards Won" },
-];
+import { Briefcase, Code, Cpu, Paintbrush } from "lucide-react";
 
 const services = [
   {
@@ -19,17 +12,17 @@ const services = [
   {
     icon: <Code className="h-8 w-8 text-primary" />,
     title: "Web Development",
-    description: "Building responsive, high-performance websites using modern technologies like React and Next.js.",
+    description: "Building responsive, high-performance websites using modern technologies like React and Node.js.",
   },
   {
     icon: <Briefcase className="h-8 w-8 text-primary" />,
-    title: "Branding",
-    description: "Developing strong brand identities that resonate with your target audience and set you apart.",
+    title: "React Native",
+    description: "Developing cross-platform mobile applications with a focus on performance and user experience.",
   },
-    {
-    icon: <Award className="h-8 w-8 text-primary" />,
-    title: "Digital Marketing",
-    description: "Creating marketing strategies to boost your online presence and engage with customers.",
+  {
+    icon: <Cpu className="h-8 w-8 text-primary" />,
+    title: "Data Science",
+    description: "Exploring data to find insights and building introductory machine learning models.",
   },
 ];
 
@@ -40,7 +33,7 @@ export default function AboutSection() {
         <div className="relative mx-auto w-full max-w-md">
            <Image
             src="https://placehold.co/600x750.png"
-            alt="About Gerald"
+            alt="About Bharath"
             width={600}
             height={750}
             className="relative z-10 rounded-lg shadow-xl"
@@ -51,30 +44,14 @@ export default function AboutSection() {
         <div>
           <h3 className="font-headline text-lg font-medium text-primary">About Me</h3>
           <h2 className="mt-2 font-headline text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-            A Passionate Designer and Developer
+            A Passionate Developer and Innovator
           </h2>
           <p className="mt-6 text-muted-foreground">
-            I'm a multi-talented creative professional based in San Francisco, with a passion for building beautiful and functional digital products. With a background in both design and development, I bridge the gap between aesthetics and technology.
+            I'm a multi-talented and quick-learning professional with a passion for building beautiful and functional digital products. With a strong foundation in computer science and hands-on experience in full-stack development and data science, I bridge the gap between technology and user-centric solutions.
           </p>
-          <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-4">
-            {stats.map((stat) => (
-              <Card key={stat.label} className="text-center">
-                <CardHeader className="p-4 pb-2">
-                  <CardTitle className="font-headline text-3xl font-bold text-primary">{stat.value}</CardTitle>
-                </CardHeader>
-                <CardContent className="p-4 pt-0">
-                  <p className="text-sm text-muted-foreground">{stat.label}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
         </div>
       </div>
       <div className="mt-20">
-        <SectionTitle>My Services</SectionTitle>
-        <SectionSubtitle>
-          I provide a wide range of creative and technical services to help you achieve your goals.
-        </SectionSubtitle>
         <div className="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {services.map((service) => (
             <Card key={service.title}>

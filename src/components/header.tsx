@@ -57,7 +57,7 @@ export default function Header() {
       <div className="container flex h-16 items-center justify-between px-4 md:px-6">
         <Link href="/" className="flex items-center gap-2 font-headline text-lg font-bold">
           <Mountain className="h-6 w-6 text-primary" />
-          <span>Gerald</span>
+          <span>Bharath Kiran</span>
         </Link>
 
         {!isMobile && <NavLinksComponent />}
@@ -76,7 +76,7 @@ export default function Header() {
                 <div className="flex flex-col gap-8 pt-12">
                    <Link href="/" className="flex items-center gap-2 font-headline text-lg font-bold">
                     <Mountain className="h-6 w-6 text-primary" />
-                    <span>Gerald</span>
+                    <span>Bharath Kiran</span>
                   </Link>
                   <NavLinksComponent className="flex-col items-start gap-4" />
                 </div>

@@ -1,41 +1,47 @@
 import { Section, SectionTitle, SectionSubtitle } from "@/components/section-wrapper";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Briefcase, GraduationCap } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const experienceData = [
   {
-    date: "2022 - Present",
-    title: "Senior UI/UX Designer",
-    company: "Google",
-    description: "Leading design on major products, mentoring junior designers, and collaborating with cross-functional teams to deliver world-class user experiences.",
+    date: "Dec 2024 – Apr 2025",
+    title: "Data Science Intern",
+    company: "SkillDzire",
+    description: "Learned Data Science fundamentals, Python basics, Data Structures, Pandas, NumPy, and introductory Machine Learning concepts. Applied knowledge through hands-on exercises and real-world scenarios.",
   },
   {
-    date: "2020 - 2022",
-    title: "Web Developer",
-    company: "Facebook",
-    description: "Developed and maintained user-facing features for Facebook's main platform, focusing on performance and scalability.",
+    date: "Jun 2024 – Aug 2024",
+    title: "Full Stack Development Intern",
+    company: "DataValley",
+    description: "Designed responsive web pages using HTML & CSS. Wrote and optimized SQL queries for database operations. Developed and tested backend components using Java.",
   },
   {
-    date: "2018 - 2020",
-    title: "Junior Designer",
-    company: "Webflow",
-    description: "Assisted in the design and implementation of various web projects, gaining foundational skills in UI/UX and web development.",
+    date: "May 2023 – Jul 2023",
+    title: "Web Application Pentester Intern",
+    company: "Indian Servers",
+    description: "Performed vulnerability assessments on web applications (including OWASP Juice-Shop). Worked on NLP and text preprocessing projects. Fine-tuned GPT and BERT models using OpenAI & Hugging Face APIs.",
   },
 ];
 
 const educationData = [
   {
-    date: "2016 - 2018",
-    title: "Master's in HCI",
-    institution: "Stanford University",
-    description: "Focused on human-computer interaction, user-centered design methodologies, and usability testing.",
+    date: "2021 - 2025",
+    title: "B.Tech – Computer Science & Engineering",
+    institution: "Andhra Loyola Institute of Engineering and Technology, JNTUK",
+    description: "CGPA: 7.4/10",
   },
   {
-    date: "2012 - 2016",
-    title: "Bachelor's in Computer Science",
-    institution: "University of California, Berkeley",
-    description: "Comprehensive study of computer science fundamentals, including algorithms, data structures, and software engineering.",
+    date: "2019 - 2021",
+    title: "Intermediate (MPC)",
+    institution: "Sarada Junior College",
+    description: "Percentage: 80%",
+  },
+  {
+    date: "2019",
+    title: "Secondary School",
+    institution: "St. John’s E.M. High School",
+    description: "GPA: 8.8/10",
   },
 ];
 

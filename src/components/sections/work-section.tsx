@@ -8,46 +8,18 @@ import { Button } from "../ui/button";
 
 const projects = [
   {
-    title: "E-commerce Platform",
-    description: "A full-featured e-commerce site with a custom CMS and payment integration.",
+    title: "RideTogether - AI Ride-Sharing",
+    description: "A community-based carpooling platform with AI-powered ride matching, wallet integration, and carbon footprint tracking.",
     image: "https://placehold.co/600x400.png",
-    tags: ["UI/UX", "Next.js", "Stripe"],
-    hint: "online store",
+    tags: ["React Native", "Node.js", "PostgreSQL", "Firebase"],
+    hint: "ride sharing app",
   },
   {
-    title: "SaaS Dashboard",
-    description: "A complex data visualization dashboard for a business intelligence SaaS product.",
+    title: "Educational CMS",
+    description: "A web-based Content Management System to manage courses, student records, and faculty coordination with role-based access.",
     image: "https://placehold.co/600x400.png",
-    tags: ["React", "Charts", "UI Design"],
-    hint: "dashboard interface",
-  },
-  {
-    title: "Mobile Banking App",
-    description: "A secure and intuitive mobile banking application for iOS and Android.",
-    image: "https://placehold.co/600x400.png",
-    tags: ["Mobile App", "Fintech", "Security"],
-    hint: "mobile banking",
-  },
-  {
-    title: "Corporate Website",
-    description: "A professional and modern website for a major technology corporation.",
-    image: "https://placehold.co/600x400.png",
-    tags: ["Branding", "Webflow", "SEO"],
-    hint: "corporate website",
-  },
-  {
-    title: "Healthcare Portal",
-    description: "A HIPAA-compliant patient portal for a regional healthcare provider.",
-    image: "https://placehold.co/600x400.png",
-    tags: ["Healthcare", "Security", "React"],
-    hint: "patient portal",
-  },
-  {
-    title: "Travel Booking Site",
-    description: "A user-friendly travel booking platform with advanced search and filtering.",
-    image: "https://placehold.co/600x400.png",
-    tags: ["UI/UX", "API Integration", "Next.js"],
-    hint: "travel booking",
+    tags: ["React.js", "Node.js", "PostgreSQL", "Firebase"],
+    hint: "cms dashboard",
   },
 ];
 
@@ -58,7 +30,7 @@ export default function WorkSection() {
       <SectionSubtitle>
         Here are a few projects I've worked on recently. Want to see more? Email me.
       </SectionSubtitle>
-      <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-2">
         {projects.map((project) => (
           <Card key={project.title} className="overflow-hidden group">
             <CardHeader className="p-0">

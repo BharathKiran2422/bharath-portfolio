@@ -12,9 +12,9 @@ import { submitContactForm } from "@/app/actions";
 import { useToast } from "@/hooks/use-toast";
 
 const contactInfo = [
-    { icon: <Mail className="h-6 w-6 text-primary" />, text: "hello@gerald.com" },
-    { icon: <Phone className="h-6 w-6 text-primary" />, text: "+1 234 567 890" },
-    { icon: <MapPin className="h-6 w-6 text-primary" />, text: "San Francisco, CA" },
+    { icon: <Mail className="h-6 w-6 text-primary" />, text: "bharathkiranobilisetty@gmail.com" },
+    { icon: <Phone className="h-6 w-6 text-primary" />, text: "+91 8639678884" },
+    { icon: <MapPin className="h-6 w-6 text-primary" />, text: "Vijayawada, India" },
 ];
 
 function SubmitButton() {

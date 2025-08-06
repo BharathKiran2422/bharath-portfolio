@@ -7,6 +7,7 @@ import TestimonialsSection from '@/components/sections/testimonials-section';
 import BlogSection from '@/components/sections/blog-section';
 import ContactSection from '@/components/sections/contact-section';
 import Footer from '@/components/footer';
+import PhotoGallerySection from '@/components/sections/photo-gallery-section';
 
 export default function Home() {
   return (
@@ -19,6 +20,7 @@ export default function Home() {
         <WorkSection />
         <TestimonialsSection />
         <BlogSection />
+        <PhotoGallerySection />
         <ContactSection />
       </main>
       <Footer />

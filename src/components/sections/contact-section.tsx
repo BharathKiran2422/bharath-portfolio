@@ -1,7 +1,8 @@
 "use client"
 
 import React, { useEffect } from 'react';
-import { useFormState, useFormStatus } from 'react-dom';
+import { useActionState } from 'react';
+import { useFormStatus } from 'react-dom';
 import { Section, SectionTitle, SectionSubtitle } from "@/components/section-wrapper";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -30,7 +31,7 @@ export default function ContactSection() {
     const { toast } = useToast();
     const formRef = React.useRef<HTMLFormElement>(null);
 
-    const [state, formAction] = useFormState(submitContactForm, {
+    const [state, formAction] = useActionState(submitContactForm, {
         message: '',
         errors: undefined,
     });

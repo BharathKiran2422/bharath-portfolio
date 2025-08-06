@@ -10,18 +10,15 @@ import { Camera, Code, Users, Star, Mountain, Image as ImageIcon } from "lucide-
 type Category = "all" | "development" | "events" | "behind-the-scenes" | "personal" | "nature";
 
 const photos = [
-  { src: "https://placehold.co/600x400.png", alt: "Development Screenshot 1", category: "development", hint: "dashboard analytics" },
-  { src: "https://placehold.co/600x400.png", alt: "College Workshop", category: "events", hint: "workshop presentation" },
+  { src: "https://placehold.co/800x600.png", alt: "Development Screenshot 1", category: "development", hint: "dashboard analytics", className: "md:col-span-2" },
+  { src: "https://placehold.co/600x800.png", alt: "College Workshop", category: "events", hint: "workshop presentation", className: "md:row-span-2" },
   { src: "https://placehold.co/600x400.png", alt: "Team Collaboration", category: "behind-the-scenes", hint: "team meeting" },
   { src: "https://placehold.co/600x400.png", alt: "Personal Branding Photo", category: "personal", hint: "man portrait" },
-  { src: "https://placehold.co/600x400.png", alt: "Mountain Landscape", category: "nature", hint: "mountain landscape" },
-  { src: "https://placehold.co/600x400.png", alt: "App UI Mockup", category: "development", hint: "mobile app" },
+  { src: "https://placehold.co/600x800.png", alt: "Mountain Landscape", category: "nature", hint: "mountain landscape", className: "md:row-span-2" },
+  { src: "https://placehold.co/800x600.png", alt: "App UI Mockup", category: "development", hint: "mobile app", className: "md:col-span-2" },
   { src: "https://placehold.co/600x400.png", alt: "Hackathon Event", category: "events", hint: "hackathon event" },
   { src: "https://placehold.co/600x400.png", alt: "Candid Work Moment", category: "behind-the-scenes", hint: "people working" },
   { src: "https://placehold.co/600x400.png", alt: "Travel Highlight", category: "personal", hint: "city travel" },
-  { src: "https://placehold.co/600x400.png", alt: "Forest Trail", category: "nature", hint: "forest path" },
-  { src: "https://placehold.co/600x400.png", alt: "Project Dashboard", category: "development", hint: "code screen" },
-  { src: "https://placehold.co/600x400.png", alt: "Conference Presentation", category: "events", hint: "conference stage" },
 ];
 
 const tabs: { key: Category; label: string; icon: React.ReactNode }[] = [
@@ -61,9 +58,9 @@ export default function PhotoGallerySection() {
         ))}
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 animate-in fade-in slide-in-from-bottom-8 duration-700">
+      <div className="grid grid-cols-1 md:grid-cols-3 md:grid-rows-3 gap-4 animate-in fade-in slide-in-from-bottom-8 duration-700">
         {filteredPhotos.map((photo, index) => (
-          <div key={index} className="relative aspect-video w-full overflow-hidden rounded-lg shadow-lg group">
+          <div key={`${photo.alt}-${index}`} className={cn("relative min-h-[250px] w-full overflow-hidden rounded-lg shadow-lg group", photo.className)}>
             <Image
               src={photo.src}
               alt={photo.alt}

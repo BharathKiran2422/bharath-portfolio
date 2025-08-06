@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from "react";
@@ -67,7 +68,7 @@ const certificationsData = [
 
 const sections = {
   experience: {
-    title: "My Experience",
+    title: "Experience",
     subtitle: "I've gained hands-on experience through internships, working on real-world projects and developing my technical skills. These opportunities allowed me to contribute to impactful solutions while learning and growing in tech.",
     icon: <Briefcase className="mr-2 h-4 w-4" />,
     content: (
@@ -86,7 +87,7 @@ const sections = {
     ),
   },
   education: {
-    title: "My Education",
+    title: "Education",
     subtitle: "My academic journey has provided me with a strong foundation in computer science and a passion for continuous learning.",
     icon: <GraduationCap className="mr-2 h-4 w-4" />,
     content: (
@@ -105,7 +106,7 @@ const sections = {
     ),
   },
   skills: {
-    title: "My Skills",
+    title: "Skills",
     subtitle: "A showcase of my technical and soft skills, demonstrating my ability to tackle diverse challenges and collaborate effectively.",
     icon: <Star className="mr-2 h-4 w-4" />,
     content: (
@@ -126,7 +127,7 @@ const sections = {
     ),
   },
   certifications: {
-    title: "My Certifications",
+    title: "Certifications",
     subtitle: "I am committed to lifelong learning and professional development, as demonstrated by these certifications.",
     icon: <Award className="mr-2 h-4 w-4" />,
     content: (
@@ -168,7 +169,11 @@ export default function ResumeSection() {
 
   return (
     <Section id="resume" className="bg-background">
-       <div className="grid grid-cols-2 lg:grid-cols-5 gap-4 mb-12 max-w-4xl mx-auto">
+      <SectionTitle>My Resume</SectionTitle>
+      <SectionSubtitle>
+         Check out my qualifications and professional journey.
+      </SectionSubtitle>
+       <div className="grid grid-cols-2 lg:grid-cols-5 gap-4 my-12 max-w-4xl mx-auto">
         {(Object.keys(sections) as SectionKey[]).map((tab) => (
           <Button
             key={tab}
@@ -183,8 +188,8 @@ export default function ResumeSection() {
       </div>
 
       <div className="mt-8 text-center animate-in fade-in duration-500">
-        <SectionTitle>{ActiveContent.title}</SectionTitle>
-        <SectionSubtitle>{ActiveContent.subtitle}</SectionSubtitle>
+        <h3 className="font-headline text-2xl font-bold tracking-tight text-foreground sm:text-3xl">{ActiveContent.title}</h3>
+        <p className="mx-auto mt-4 max-w-2xl text-center text-md text-muted-foreground">{ActiveContent.subtitle}</p>
       </div>
 
       <div className="mt-12 max-w-6xl mx-auto animate-in fade-in slide-in-from-bottom-8 duration-700">

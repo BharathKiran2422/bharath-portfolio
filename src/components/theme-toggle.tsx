@@ -30,7 +30,7 @@ export function ThemeToggle() {
           </Button>
         </TooltipTrigger>
         <TooltipContent>
-          <p>Toggle theme</p>
+          <p>Switch to {theme === 'dark' ? 'Light' : 'Dark'} Theme</p>
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>

@@ -6,7 +6,7 @@ import { Menu, Mountain } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { useIsMobile } from "@/hooks/use-mobile"
 
@@ -73,11 +73,18 @@ export default function Header() {
                 </Button>
               </SheetTrigger>
               <SheetContent side="right">
+                <SheetHeader>
+                  <SheetTitle>
+                    <Link href="/" className="flex items-center gap-2 font-headline text-lg font-bold">
+                      <Mountain className="h-6 w-6 text-primary" />
+                      <span>Bharath Kiran</span>
+                    </Link>
+                  </SheetTitle>
+                  <SheetDescription>
+                    Navigation menu
+                  </SheetDescription>
+                </SheetHeader>
                 <div className="flex flex-col gap-8 pt-12">
-                   <Link href="/" className="flex items-center gap-2 font-headline text-lg font-bold">
-                    <Mountain className="h-6 w-6 text-primary" />
-                    <span>Bharath Kiran</span>
-                  </Link>
                   <NavLinksComponent className="flex-col items-start gap-4" />
                 </div>
               </SheetContent>

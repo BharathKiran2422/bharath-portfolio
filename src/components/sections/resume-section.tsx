@@ -6,7 +6,7 @@ import { Section, SectionTitle, SectionSubtitle } from "@/components/section-wra
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { Briefcase, GraduationCap, Star, Award, User } from "lucide-react";
+import { Briefcase, GraduationCap, Star, Award, User, BrainCircuit, MessageSquare, Lightbulb, BarChart, Sparkles, Timer } from "lucide-react";
 
 const experienceData = [
   {
@@ -67,12 +67,12 @@ const skillsData = {
     { name: "CSS3", icon: <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10" viewBox="0 0 24 24"><path fill="currentColor" d="M1.945 2.115L3.63 19.885L12 22l8.37-2.115L22.055 2.115zM12 19.86l-6.24-1.68l.52-5.7H12v2.12h-4.01l-.2-2.18h4.21V10.3H8.56l-.33-3.56H12v2.12h4.44l-.42 4.64z" /></svg> },
   ],
   soft: [
-    "Problem Solving",
-    "Communication",
-    "Quick Learning",
-    "Analytical Thinking",
-    "Smart Work",
-    "Patience",
+    { name: "Problem Solving", icon: <BrainCircuit className="h-8 w-8 text-primary" /> },
+    { name: "Communication", icon: <MessageSquare className="h-8 w-8 text-primary" /> },
+    { name: "Quick Learning", icon: <Lightbulb className="h-8 w-8 text-primary" /> },
+    { name: "Analytical Thinking", icon: <BarChart className="h-8 w-8 text-primary" /> },
+    { name: "Smart Work", icon: <Sparkles className="h-8 w-8 text-primary" /> },
+    { name: "Patience", icon: <Timer className="h-8 w-8 text-primary" /> },
   ],
 };
 
@@ -147,11 +147,16 @@ const sections = {
           <Card className="bg-muted/30">
             <CardContent className="p-6">
               <h3 className="font-headline text-lg font-semibold text-primary mb-6 text-center">Soft Skills</h3>
-              <ul className="list-disc list-inside text-muted-foreground space-y-3">
+              <div className="grid grid-cols-3 gap-6">
                 {skillsData.soft.map((skill) => (
-                  <li key={skill}>{skill}</li>
+                  <div key={skill.name} className="flex flex-col items-center gap-2 group">
+                    <div className="flex items-center justify-center h-16 w-16 rounded-lg bg-background shadow-md transition-all duration-300 group-hover:shadow-primary/20 group-hover:scale-105">
+                      {skill.icon}
+                    </div>
+                    <p className="text-sm font-medium text-muted-foreground transition-all duration-300 group-hover:text-primary">{skill.name}</p>
+                  </div>
                 ))}
-              </ul>
+              </div>
             </CardContent>
           </Card>
       </div>
@@ -229,5 +234,7 @@ export default function ResumeSection() {
     </Section>
   );
 }
+
+    
 
     

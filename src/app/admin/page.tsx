@@ -40,7 +40,7 @@ import { cn } from '@/lib/utils';
 
 
 function AdminPage() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [authStatus, setAuthStatus] = useState<'checking' | 'authenticated' | 'unauthenticated'>('checking');
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
@@ -59,7 +59,9 @@ function AdminPage() {
   useEffect(() => {
     // Check for session token on initial load
     if (sessionStorage.getItem('admin-authenticated') === 'true') {
-      setIsAuthenticated(true);
+      setAuthStatus('authenticated');
+    } else {
+      setAuthStatus('unauthenticated');
     }
   }, []);
 
@@ -70,7 +72,7 @@ function AdminPage() {
     const result = await verifyAdminPassword(password);
     if (result.success) {
       sessionStorage.setItem('admin-authenticated', 'true');
-      setIsAuthenticated(true);
+      setAuthStatus('authenticated');
     } else {
       setError(result.error || 'An unknown error occurred.');
     }
@@ -89,9 +91,9 @@ function AdminPage() {
   };
 
   useEffect(() => {
-    if (!isAuthenticated) return;
+    if (authStatus !== 'authenticated') return;
     fetchMessages();
-  }, [isAuthenticated]);
+  }, [authStatus]);
 
   const handleDelete = async () => {
     if (!messageToDelete) return;
@@ -136,12 +138,24 @@ function AdminPage() {
 
   const handleLogout = () => {
     sessionStorage.removeItem('admin-authenticated');
-    setIsAuthenticated(false);
+    setAuthStatus('unauthenticated');
     setPassword('');
     setError(null);
   }
 
-  if (!isAuthenticated) {
+  if (authStatus === 'checking') {
+     return (
+      <div className="flex items-center justify-center min-h-screen bg-background">
+        <div className="space-y-4 w-full max-w-md">
+           <Skeleton className="h-10 w-full" />
+           <Skeleton className="h-10 w-full" />
+           <Skeleton className="h-10 w-full" />
+        </div>
+      </div>
+    );
+  }
+
+  if (authStatus === 'unauthenticated') {
     return (
       <div className="flex items-center justify-center min-h-screen bg-background">
         <Card className="w-full max-w-md">

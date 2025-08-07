@@ -28,7 +28,7 @@ export default function HeroSection() {
               />
             </div>
           </div>
-          <div className="max-w-xl animate-in fade-in slide-in-from-left-8 duration-1000 order-2 lg:order-1 text-center lg:text-left">
+          <div className="max-w-xl animate-in fade-in slide-in-from-left-8 duration-1000 order-2 lg:order-1 text-center lg:text-left mx-auto lg:mx-0">
             <p className="font-headline text-lg font-medium text-primary">Hi, my name is Bharath Kiran Obilisetty</p>
             <h1 className="mt-2 font-headline text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl md:text-6xl">
               I'm a Full-Stack Developer &amp; AI Enthusiast

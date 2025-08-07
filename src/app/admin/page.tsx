@@ -36,6 +36,12 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
 import { cn } from '@/lib/utils';
 
 
@@ -249,12 +255,28 @@ function AdminPage() {
                         {msg.message}
                       </TableCell>
                       <TableCell className="text-right">
-                        <Button variant="ghost" size="icon" onClick={(e) => handleToggleRead(msg.id, msg.read, e)} aria-label={msg.read ? 'Mark as unread' : 'Mark as read'}>
-                           {msg.read ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-                        </Button>
-                         <Button variant="ghost" size="icon" onClick={(e) => { e.stopPropagation(); openDeleteDialog(msg.id);}} aria-label="Delete message">
-                            <Trash2 className="h-4 w-4 text-destructive" />
-                          </Button>
+                        <TooltipProvider>
+                          <Tooltip>
+                            <TooltipTrigger asChild>
+                              <Button variant="ghost" size="icon" onClick={(e) => handleToggleRead(msg.id, msg.read, e)} aria-label={msg.read ? 'Mark as unread' : 'Mark as read'}>
+                                {msg.read ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                              </Button>
+                            </TooltipTrigger>
+                            <TooltipContent>
+                              <p>{msg.read ? 'Mark as unread' : 'Mark as read'}</p>
+                            </TooltipContent>
+                          </Tooltip>
+                           <Tooltip>
+                            <TooltipTrigger asChild>
+                              <Button variant="ghost" size="icon" onClick={(e) => { e.stopPropagation(); openDeleteDialog(msg.id);}} aria-label="Delete message">
+                                <Trash2 className="h-4 w-4 text-destructive" />
+                              </Button>
+                            </TooltipTrigger>
+                            <TooltipContent>
+                              <p>Delete message</p>
+                            </TooltipContent>
+                          </Tooltip>
+                        </TooltipProvider>
                       </TableCell>
                     </TableRow>
                   ))}
@@ -308,5 +330,3 @@ function AdminPage() {
 }
 
 export default AdminPage;
-
-    

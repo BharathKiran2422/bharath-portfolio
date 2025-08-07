@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Briefcase, GraduationCap, Star, Award, User, BrainCircuit, MessageSquare, Lightbulb, BarChart, Sparkles, Timer } from "lucide-react";
 import { FaPython, FaJava, FaReact, FaNodeJs, FaGitAlt, FaGithub, FaHtml5, FaCss3Alt } from "react-icons/fa";
-import { SiC, SiPostgresql, SiMongodb, SiFirebase, SiMysql } from "react-icons/si";
+import { SiPostgresql, SiMongodb, SiFirebase, SiMysql } from "react-icons/si";
 
 const experienceData = [
   {
@@ -56,7 +56,6 @@ const skillsData = {
   technical: [
     { name: "Python", icon: <FaPython className="h-10 w-10 text-primary" /> },
     { name: "Java", icon: <FaJava className="h-10 w-10 text-primary" /> },
-    { name: "C", icon: <SiC className="h-10 w-10 text-primary" /> },
     { name: "MySQL", icon: <SiMysql className="h-10 w-10 text-primary" /> },
     { name: "PostgreSQL", icon: <SiPostgresql className="h-10 w-10 text-primary" /> },
     { name: "MongoDB", icon: <SiMongodb className="h-10 w-10 text-primary" /> },

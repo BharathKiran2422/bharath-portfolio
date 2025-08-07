@@ -7,7 +7,7 @@ import { Section, SectionTitle, SectionSubtitle } from "@/components/section-wra
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { Briefcase, GraduationCap, Star, Award, User, BrainCircuit, MessageSquare, Lightbulb, BarChart, Sparkles, Timer, Download } from "lucide-react";
+import { Briefcase, GraduationCap, Star, Award, User, BrainCircuit, MessageSquare, Lightbulb, BarChart, Sparkles, Timer, Download, MapPin, Calendar } from "lucide-react";
 import { FaPython, FaJava, FaReact, FaNodeJs, FaGitAlt, FaGithub, FaHtml5, FaCss3Alt } from "react-icons/fa";
 import { SiPostgresql, SiMongodb, SiFirebase, SiMysql } from "react-icons/si";
 import Link from "next/link";
@@ -35,24 +35,31 @@ const experienceData = [
 
 const educationData = [
   {
-    date: "2021 - 2025",
+    icon: <GraduationCap className="h-6 w-6 text-primary" />,
     title: "B.Tech – Computer Science & Engineering",
     institution: "Andhra Loyola Institute of Engineering and Technology, JNTUK",
-    description: "CGPA: 7.4/10",
+    location: "Vijayawada",
+    date: "2021 – 2025",
+    details: ["CGPA: 7.4 / 10", "Percentage (approx.): 70.3%"],
   },
   {
-    date: "2019 - 2021",
+    icon: "🏫",
     title: "Intermediate (MPC)",
     institution: "Sarada Junior College",
-    description: "Percentage: 80%",
+    location: "Vijayawada",
+    date: "2019 – 2021",
+    details: ["Marks: 770 / 1000", "Percentage: 77%"],
   },
   {
-    date: "2019",
-    title: "Secondary School",
+    icon: "🏫",
+    title: "Secondary School (SSC)",
     institution: "St. John’s E.M. High School",
-    description: "GPA: 8.8/10",
+    location: "Vijayawada",
+    date: "2019",
+    details: ["GPA: 8.8 / 10", "Percentage (approx.): 83.6%"],
   },
 ];
+
 
 const skillsData = {
   technical: [
@@ -112,14 +119,32 @@ const sections = {
     subtitle: "My academic journey has provided me with a strong foundation in computer science and a passion for continuous learning.",
     icon: <GraduationCap className="mr-2 h-4 w-4" />,
     content: (
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="space-y-8">
         {educationData.map((item, index) => (
-          <Card key={index} className={cn("bg-muted/30", index === 0 && "md:col-span-2")}>
+          <Card key={index} className="bg-muted/30">
             <CardContent className="p-6">
-              <p className="text-sm text-primary">{item.date}</p>
-              <h3 className="mt-2 font-headline text-lg font-semibold">{item.title}</h3>
-              <p className="mt-1 text-muted-foreground">{item.institution}</p>
-              <p className="mt-4 text-sm text-muted-foreground">{item.description}</p>
+              <div className="flex flex-col sm:flex-row sm:items-start gap-4">
+                 <div className="text-2xl sm:text-3xl">{item.icon}</div>
+                 <div className="flex-grow">
+                    <h3 className="font-headline text-lg font-semibold">{item.title}</h3>
+                    <p className="text-muted-foreground">{item.institution}</p>
+                    <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-muted-foreground mt-1">
+                        <div className="flex items-center gap-1.5">
+                            <MapPin className="h-4 w-4" />
+                            <span>{item.location}</span>
+                        </div>
+                         <div className="flex items-center gap-1.5">
+                            <Calendar className="h-4 w-4" />
+                            <span>{item.date}</span>
+                        </div>
+                    </div>
+                    <div className="mt-4 space-y-1 text-sm text-muted-foreground">
+                        {item.details.map((detail, i) => (
+                            <p key={i}>{detail}</p>
+                        ))}
+                    </div>
+                 </div>
+              </div>
             </CardContent>
           </Card>
         ))}

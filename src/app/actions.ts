@@ -43,9 +43,10 @@ export async function submitContactForm(
     });
 
     return { message: 'Your message has been saved successfully!' };
-  } catch (e) {
+  } catch (e: any) {
     console.error('Failed to save message to Firestore:', e);
-    return { message: 'Error saving message. Please try again later.' };
+    const errorMessage = e.message || 'An unknown error occurred.';
+    return { message: `Error saving message: ${errorMessage}. Please try again later.` };
   }
 }
 

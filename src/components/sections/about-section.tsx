@@ -31,13 +31,13 @@ export default function AboutSection() {
     <Section id="about" className="bg-card">
       <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
         <div className="group relative mx-auto w-full max-w-md">
-          <div className="relative p-1 rounded-2xl bg-gradient-to-br from-primary/30 to-primary/10 transition-all duration-300 group-hover:from-primary/50 group-hover:to-primary/30">
+          <div className="relative rounded-2xl bg-gradient-to-br from-primary/30 to-primary/10 p-1 transition-all duration-300 group-hover:from-primary/50 group-hover:to-primary/30 rotate-[-2deg] group-hover:rotate-0">
              <Image
               src="https://placehold.co/600x750.png"
               alt="About Bharath"
               width={600}
               height={750}
-              className="relative z-10 rounded-xl shadow-xl transition-transform duration-300 ease-in-out group-hover:rotate-0 rotate-[-2deg]"
+              className="relative z-10 rounded-xl shadow-xl"
               data-ai-hint="man working"
             />
           </div>

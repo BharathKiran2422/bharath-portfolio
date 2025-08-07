@@ -37,7 +37,7 @@ const blogPosts = [
 
 export default function BlogSection() {
   return (
-    <Section id="blog" className="bg-muted/50 dark:bg-card">
+    <Section id="blog" className="bg-background">
       <SectionTitle>From My Blog</SectionTitle>
       <SectionSubtitle>
         I share my thoughts on design, development, and the tech industry.

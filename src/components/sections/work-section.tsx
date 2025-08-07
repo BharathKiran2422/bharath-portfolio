@@ -25,7 +25,7 @@ const projects = [
 
 export default function WorkSection() {
   return (
-    <Section id="work" className="bg-muted/50 dark:bg-card">
+    <Section id="work" className="bg-card">
       <SectionTitle>My Recent Work</SectionTitle>
       <SectionSubtitle>
         Here are a few projects I've worked on recently. Want to see more? Email me.

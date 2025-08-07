@@ -38,7 +38,7 @@ export default function PhotoGallerySection() {
     : photos.filter(p => p.category === activeTab);
 
   return (
-    <Section id="gallery">
+    <Section id="gallery" className="bg-card">
       <SectionTitle>Photo Gallery</SectionTitle>
       <SectionSubtitle>
         A collection of moments from my professional and personal life.

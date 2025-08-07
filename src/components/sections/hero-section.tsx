@@ -12,7 +12,7 @@ const stats = [
 
 export default function HeroSection() {
   return (
-    <section id="home" className="relative overflow-hidden pt-12 pb-20 md:pt-16 md:pb-24">
+    <section id="home" className="relative overflow-hidden pt-12 pb-20 md:pt-16 md:pb-24 bg-background">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
            <div className="relative flex justify-center lg:justify-end animate-in fade-in slide-in-from-right-8 duration-1000 order-1 lg:order-2">

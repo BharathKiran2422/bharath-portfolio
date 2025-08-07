@@ -55,7 +55,7 @@ export default function ContactSection() {
     }, [state, toast]);
 
   return (
-    <Section id="contact">
+    <Section id="contact" className="bg-background">
       <SectionTitle>Get In Touch</SectionTitle>
       <SectionSubtitle>
         Have a project in mind or just want to say hi? Feel free to reach out.

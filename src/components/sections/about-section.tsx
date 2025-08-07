@@ -28,7 +28,7 @@ const services = [
 
 export default function AboutSection() {
   return (
-    <Section id="about" className="bg-muted/50 dark:bg-card">
+    <Section id="about" className="bg-card">
       <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
         <div className="relative mx-auto w-full max-w-md">
            <Image

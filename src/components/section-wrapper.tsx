@@ -22,7 +22,7 @@ export function Section({ id, children, className }: SectionProps) {
 
 export function SectionTitle({ children, className }: SectionHeadingProps) {
   return (
-    <h2 className={cn("text-center font-headline text-3xl font-bold tracking-tight sm:text-4xl bg-gradient-to-r from-primary to-foreground bg-clip-text text-transparent", className)}>
+    <h2 className={cn("text-center font-headline text-3xl font-bold tracking-tight sm:text-4xl bg-gradient-to-r from-primary/80 to-foreground bg-clip-text text-transparent", className)}>
       {children}
     </h2>
   );

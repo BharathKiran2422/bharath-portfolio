@@ -92,7 +92,7 @@ const sections = {
     content: (
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {experienceData.map((item, index) => (
-          <Card key={index} className="bg-muted/30">
+          <Card key={index} className={cn("bg-muted/30", index === 0 && "md:col-span-2")}>
             <CardContent className="p-6">
               <p className="text-sm text-primary">{item.date}</p>
               <h3 className="mt-2 font-headline text-xl font-semibold">{item.title}</h3>
@@ -238,3 +238,4 @@ export default function ResumeSection() {
     
 
     
+

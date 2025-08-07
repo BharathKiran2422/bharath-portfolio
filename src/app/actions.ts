@@ -14,7 +14,7 @@ type FormState = {
   message: string;
   errors?: {
     name?: string[];
-    email?: string[];
+    email?:string[];
     message?: string[];
   };
 };
@@ -47,4 +47,13 @@ export async function submitContactForm(
     console.error('Failed to save message to Firestore:', e);
     return { message: 'Error saving message. Please try again later.' };
   }
+}
+
+
+export async function verifyAdminPassword(password: string): Promise<{success: boolean; error?: string}> {
+    if (password === process.env.ADMIN_PASSWORD) {
+        return { success: true };
+    } else {
+        return { success: false, error: 'Invalid password.' };
+    }
 }

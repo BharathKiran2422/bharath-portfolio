@@ -14,6 +14,10 @@ import {
 } from '@/components/ui/table';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import { verifyAdminPassword } from '@/app/actions';
+import { Label } from '@/components/ui/label';
 
 interface Message {
   id: string;
@@ -24,11 +28,31 @@ interface Message {
 }
 
 function AdminPage() {
-  const [messages, setMessages] = useState<Message[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
 
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [messagesLoading, setMessagesLoading] = useState(true);
+  const [messagesError, setMessagesError] = useState<string | null>(null);
+
+  const handlePasswordSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setError(null);
+    const result = await verifyAdminPassword(password);
+    if (result.success) {
+      setIsAuthenticated(true);
+    } else {
+      setError(result.error || 'An unknown error occurred.');
+    }
+    setLoading(false);
+  };
+  
   useEffect(() => {
+    if (!isAuthenticated) return;
+
     const fetchMessages = async () => {
       try {
         const messagesCollection = collection(db, 'messages');
@@ -41,14 +65,45 @@ function AdminPage() {
         setMessages(messagesData);
       } catch (err) {
         console.error('Error fetching messages:', err);
-        setError('Failed to load messages. Please ensure you have the correct Firestore permissions.');
+        setMessagesError('Failed to load messages. Please ensure you have the correct Firestore permissions.');
       } finally {
-        setLoading(false);
+        setMessagesLoading(false);
       }
     };
 
     fetchMessages();
-  }, []);
+  }, [isAuthenticated]);
+
+  if (!isAuthenticated) {
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-background">
+        <Card className="w-full max-w-md">
+          <CardHeader>
+            <CardTitle className="text-2xl font-bold tracking-tight text-center">Admin Access</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <form onSubmit={handlePasswordSubmit} className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="password">Password</Label>
+                <Input
+                  id="password"
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Enter admin password"
+                  required
+                />
+              </div>
+              {error && <p className="text-sm text-destructive">{error}</p>}
+              <Button type="submit" className="w-full" disabled={loading}>
+                {loading ? 'Verifying...' : 'Login'}
+              </Button>
+            </form>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-background">
@@ -58,8 +113,8 @@ function AdminPage() {
             <CardTitle className="text-2xl font-bold tracking-tight">Contact Form Submissions</CardTitle>
           </CardHeader>
           <CardContent>
-            {error && <p className="text-destructive">{error}</p>}
-            {loading ? (
+            {messagesError && <p className="text-destructive">{messagesError}</p>}
+            {messagesLoading ? (
               <div className="space-y-4">
                 {[...Array(5)].map((_, i) => (
                    <div key={i} className="flex items-center space-x-4">
@@ -71,7 +126,7 @@ function AdminPage() {
                   </div>
                 ))}
               </div>
-            ) : messages.length === 0 && !error ? (
+            ) : messages.length === 0 && !messagesError ? (
               <p>No messages yet.</p>
             ) : (
               <Table>

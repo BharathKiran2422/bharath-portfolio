@@ -1,3 +1,6 @@
+"use client";
+
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Github, Linkedin, Send } from 'lucide-react';
@@ -10,7 +13,40 @@ const stats = [
     { value: "240+", label: "Code commits" },
 ];
 
+const roles = ["Full-Stack Developer", "AI Enthusiast"];
+
 export default function HeroSection() {
+  const [roleIndex, setRoleIndex] = useState(0);
+  const [text, setText] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [typingSpeed, setTypingSpeed] = useState(150);
+
+  useEffect(() => {
+    const handleTyping = () => {
+      const currentRole = roles[roleIndex];
+      const updatedText = isDeleting
+        ? currentRole.substring(0, text.length - 1)
+        : currentRole.substring(0, text.length + 1);
+
+      setText(updatedText);
+
+      if (!isDeleting && updatedText === currentRole) {
+        // Pause at end of word
+        setTimeout(() => setIsDeleting(true), 1500);
+        setTypingSpeed(150);
+      } else if (isDeleting && updatedText === '') {
+        setIsDeleting(false);
+        setRoleIndex((prevIndex) => (prevIndex + 1) % roles.length);
+        setTypingSpeed(150);
+      } else {
+        setTypingSpeed(isDeleting ? 75 : 150);
+      }
+    };
+
+    const typingTimeout = setTimeout(handleTyping, typingSpeed);
+    return () => clearTimeout(typingTimeout);
+  }, [text, isDeleting, roleIndex, typingSpeed]);
+
   return (
     <section id="home" className="relative overflow-hidden pt-12 pb-20 md:pt-16 md:pb-24 bg-background">
       <div className="container mx-auto px-4">
@@ -29,9 +65,10 @@ export default function HeroSection() {
             </div>
           </div>
           <div className="max-w-xl animate-in fade-in slide-in-from-left-8 duration-1000 order-2 lg:order-1 text-center lg:text-left mx-auto lg:mx-0">
-            <p className="font-headline text-lg font-medium text-primary">Hi, my name is Bharath Kiran Obilisetty</p>
+            <p className="font-headline text-2xl font-medium text-primary">Hi, my name is Bharath Kiran Obilisetty</p>
             <h1 className="mt-2 font-headline text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl md:text-6xl">
-              I'm a Full-Stack Developer &amp; AI Enthusiast
+              I'm a <span className="text-primary">{text}</span>
+              <span className="animate-ping">|</span>
             </h1>
             <p className="mt-6 text-lg leading-8 text-muted-foreground">
               I specialize in creating intuitive, beautiful, and user-friendly digital experiences. From concept to deployment, I bring ideas to life with clean code and thoughtful design using technologies like React, Node.js, and Firebase.

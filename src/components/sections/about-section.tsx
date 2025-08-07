@@ -31,9 +31,7 @@ export default function AboutSection() {
     <Section id="about" className="bg-card">
       <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
         <div className="group relative mx-auto w-full max-w-md">
-          <div className="relative w-full h-full p-4">
-            <div className="absolute inset-0 border-2 border-primary/30 rounded-2xl transition-colors duration-300 group-hover:border-primary/60"></div>
-            <div className="absolute -top-2 -left-2 -bottom-2 -right-2 rounded-3xl border border-primary/10"></div>
+          <div className="relative p-1 rounded-2xl bg-gradient-to-br from-primary/30 to-primary/10 transition-all duration-300 group-hover:from-primary/50 group-hover:to-primary/30">
              <Image
               src="https://placehold.co/600x750.png"
               alt="About Bharath"

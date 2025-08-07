@@ -64,7 +64,7 @@ export interface Message {
   name: string;
   email: string;
   message: string;
-  createdAt: Timestamp;
+  createdAt: string; // Changed from Timestamp to string
 }
 
 // This function will be called from the admin page to fetch messages.
@@ -76,15 +76,16 @@ export async function getMessages(): Promise<{ messages?: Message[]; error?: str
     const querySnapshot = await getDocs(q);
     const messagesData = querySnapshot.docs.map(doc => {
       const data = doc.data();
+      const createdAtTimestamp = data.createdAt as Timestamp;
       return {
         id: doc.id,
         name: data.name,
         email: data.email,
         message: data.message,
-        // The createdAt field needs to be handled carefully as it's a Timestamp
-        createdAt: data.createdAt,
+        // Convert timestamp to a serializable format (ISO string)
+        createdAt: createdAtTimestamp.toDate().toISOString(),
       };
-    }) as Message[];
+    });
     return { messages: messagesData };
   } catch (err: any) {
     console.error('Error fetching messages from server action:', err);

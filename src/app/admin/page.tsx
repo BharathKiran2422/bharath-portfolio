@@ -125,7 +125,7 @@ function AdminPage() {
                   {messages.map((msg) => (
                     <TableRow key={msg.id}>
                       <TableCell>
-                        {msg.createdAt ? new Date(msg.createdAt.seconds * 1000).toLocaleString() : 'N/A'}
+                        {msg.createdAt ? new Date(msg.createdAt).toLocaleString() : 'N/A'}
                       </TableCell>
                       <TableCell>{msg.name}</TableCell>
                       <TableCell>{msg.email}</TableCell>

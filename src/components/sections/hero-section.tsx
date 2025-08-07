@@ -3,6 +3,13 @@ import { Button } from '@/components/ui/button';
 import { Github, Linkedin, Send } from 'lucide-react';
 import Link from 'next/link';
 
+const stats = [
+    { value: "300+", label: "Leetcode solved" },
+    { value: "3", label: "Projects completed" },
+    { value: "8+", label: "Technologies mastered" },
+    { value: "240+", label: "Code commits" },
+];
+
 export default function HeroSection() {
   return (
     <section id="home" className="relative overflow-hidden pt-12 pb-24 sm:pt-16 sm:pb-32 lg:pt-20 lg:pb-40">
@@ -23,9 +30,7 @@ export default function HeroSection() {
                   Hire Me
                 </Link>
               </Button>
-            </div>
-            <div className="mt-10 flex items-center gap-4">
-              <Link href="https://github.com/BharathKiran2422" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary">
+               <Link href="https://github.com/BharathKiran2422" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary">
                 <Github className="h-6 w-6" />
               </Link>
               <Link href="https://www.linkedin.com/in/bharath-kiran/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary">
@@ -35,7 +40,6 @@ export default function HeroSection() {
           </div>
           <div className="relative flex justify-center lg:justify-end animate-in fade-in slide-in-from-right-8 duration-1000">
             <div className="relative h-80 w-80 sm:h-96 sm:w-96 lg:h-[450px] lg:w-[450px]">
-               <div className="absolute inset-0 rounded-full bg-primary/20 blur-3xl" />
                <Image
                 src="https://placehold.co/600x600.png"
                 alt="Bharath's Profile Picture"
@@ -47,6 +51,14 @@ export default function HeroSection() {
               />
             </div>
           </div>
+        </div>
+        <div className="mt-24 grid grid-cols-2 gap-8 text-center md:grid-cols-4 animate-in fade-in slide-in-from-bottom-8 duration-1000">
+            {stats.map((stat) => (
+                <div key={stat.label}>
+                    <p className="font-headline text-4xl font-bold text-primary">{stat.value}</p>
+                    <p className="mt-2 text-sm text-muted-foreground">{stat.label}</p>
+                </div>
+            ))}
         </div>
       </div>
     </section>

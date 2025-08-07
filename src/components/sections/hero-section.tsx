@@ -50,45 +50,47 @@ export default function HeroSection() {
   return (
     <section id="home" className="relative overflow-hidden pt-12 pb-20 md:pt-16 md:pb-24 bg-background">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
-           <div className="relative flex justify-center lg:justify-start animate-in fade-in slide-in-from-right-8 duration-1000 order-1 lg:order-2">
-             <div className="relative h-80 w-80 sm:h-96 sm:w-96 lg:h-[450px] lg:w-[450px] group">
-                <div className="absolute inset-0.5 bg-gradient-to-r from-primary/50 to-accent/50 rounded-full blur-xl opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-tilt"></div>
-               <Image
-                src="https://placehold.co/600x600.png"
-                alt="Bharath's Profile Picture"
-                width={600}
-                height={600}
-                priority
-                data-ai-hint="portrait man"
-                className="relative h-full w-full rounded-full object-cover shadow-2xl transition-transform duration-300 group-hover:scale-105"
-              />
+        <div className="flex justify-center">
+            <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
+            <div className="relative flex justify-center lg:justify-start animate-in fade-in slide-in-from-right-8 duration-1000 order-1 lg:order-2">
+                <div className="relative h-80 w-80 sm:h-96 sm:w-96 lg:h-[450px] lg:w-[450px] group">
+                    <div className="absolute inset-0.5 bg-gradient-to-r from-primary/50 to-accent/50 rounded-full blur-xl opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-tilt"></div>
+                <Image
+                    src="https://placehold.co/600x600.png"
+                    alt="Bharath's Profile Picture"
+                    width={600}
+                    height={600}
+                    priority
+                    data-ai-hint="portrait man"
+                    className="relative h-full w-full rounded-full object-cover shadow-2xl transition-transform duration-300 group-hover:scale-105"
+                />
+                </div>
             </div>
-          </div>
-          <div className="max-w-xl animate-in fade-in slide-in-from-left-8 duration-1000 order-2 lg:order-1 text-center lg:text-left mx-auto lg:mx-0">
-            <h1 className="font-headline text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl md:text-6xl">Hi, I'm <span className="text-primary">Bharath</span></h1>
-            <p className="mt-2 font-headline text-2xl font-medium">
-              I'm a <span className="text-primary">{text}</span>
-              <span className="animate-ping">|</span>
-            </p>
-            <p className="mt-6 text-lg leading-8 text-muted-foreground">
-              I specialize in creating intuitive, beautiful, and user-friendly digital experiences. From concept to deployment, I bring ideas to life with clean code and thoughtful design using technologies like React, Node.js, and Firebase.
-            </p>
-            <div className="mt-10 flex items-center justify-center lg:justify-start gap-4">
-              <Button size="lg" asChild>
-                <Link href="#contact">
-                  <Send className="mr-2 h-5 w-5" />
-                  Hire Me
+            <div className="max-w-xl animate-in fade-in slide-in-from-left-8 duration-1000 order-2 lg:order-1 text-center lg:text-left mx-auto lg:mx-0">
+                <h1 className="font-headline text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl md:text-6xl">Hi, I'm <span className="text-primary">Bharath</span></h1>
+                <p className="mt-2 font-headline text-2xl font-medium">
+                I'm a <span className="text-primary">{text}</span>
+                <span className="animate-ping">|</span>
+                </p>
+                <p className="mt-6 text-lg leading-8 text-muted-foreground">
+                I specialize in creating intuitive, beautiful, and user-friendly digital experiences. From concept to deployment, I bring ideas to life with clean code and thoughtful design using technologies like React, Node.js, and Firebase.
+                </p>
+                <div className="mt-10 flex items-center justify-center lg:justify-start gap-4">
+                <Button size="lg" asChild>
+                    <Link href="#contact">
+                    <Send className="mr-2 h-5 w-5" />
+                    Hire Me
+                    </Link>
+                </Button>
+                <Link href="https://github.com/BharathKiran2422" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary">
+                    <Github className="h-6 w-6" />
                 </Link>
-              </Button>
-               <Link href="https://github.com/BharathKiran2422" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary">
-                <Github className="h-6 w-6" />
-              </Link>
-              <Link href="https://www.linkedin.com/in/bharath-kiran/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary">
-                <Linkedin className="h-6 w-6" />
-              </Link>
+                <Link href="https://www.linkedin.com/in/bharath-kiran/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary">
+                    <Linkedin className="h-6 w-6" />
+                </Link>
+                </div>
             </div>
-          </div>
+            </div>
         </div>
         <div className="mt-20 grid grid-cols-2 gap-8 text-center md:grid-cols-4 animate-in fade-in slide-in-from-bottom-8 duration-1000">
             {stats.map((stat) => (

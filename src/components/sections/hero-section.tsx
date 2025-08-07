@@ -65,11 +65,11 @@ export default function HeroSection() {
             </div>
           </div>
           <div className="max-w-xl animate-in fade-in slide-in-from-left-8 duration-1000 order-2 lg:order-1 text-center lg:text-left mx-auto lg:mx-0">
-            <p className="font-headline text-2xl font-medium text-primary">Hi, my name is Bharath Kiran Obilisetty</p>
-            <h1 className="mt-2 font-headline text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl md:text-6xl">
+            <h1 className="font-headline text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl md:text-6xl">Hi, I'm Bharath</h1>
+            <p className="mt-2 font-headline text-2xl font-medium text-primary">
               I'm a <span className="text-primary">{text}</span>
               <span className="animate-ping">|</span>
-            </h1>
+            </p>
             <p className="mt-6 text-lg leading-8 text-muted-foreground">
               I specialize in creating intuitive, beautiful, and user-friendly digital experiences. From concept to deployment, I bring ideas to life with clean code and thoughtful design using technologies like React, Node.js, and Firebase.
             </p>

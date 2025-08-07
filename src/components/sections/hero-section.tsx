@@ -13,7 +13,7 @@ const stats = [
     { value: "240+", label: "Code commits" },
 ];
 
-const roles = ["Full-Stack Developer", "AI Enthusiast"];
+const roles = ["CS Undergrad", "Full-Stack Developer", "AI Enthusiast"];
 
 export default function HeroSection() {
   const [roleIndex, setRoleIndex] = useState(0);

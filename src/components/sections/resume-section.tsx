@@ -54,19 +54,19 @@ const educationData = [
 
 const skillsData = {
   technical: [
-    { name: "Python", icon: <FaPython className="h-10 w-10" /> },
-    { name: "Java", icon: <FaJava className="h-10 w-10" /> },
-    { name: "C", icon: <SiC className="h-10 w-10" /> },
-    { name: "SQL", icon: <SiSqlite className="h-10 w-10" /> },
-    { name: "PostgreSQL", icon: <SiPostgresql className="h-10 w-10" /> },
-    { name: "MongoDB", icon: <SiMongodb className="h-10 w-10" /> },
-    { name: "React", icon: <FaReact className="h-10 w-10" /> },
-    { name: "Node.js", icon: <FaNodeJs className="h-10 w-10" /> },
-    { name: "Firebase", icon: <SiFirebase className="h-10 w-10" /> },
-    { name: "Git", icon: <FaGitAlt className="h-10 w-10" /> },
-    { name: "GitHub", icon: <FaGithub className="h-10 w-10" /> },
-    { name: "HTML5", icon: <FaHtml5 className="h-10 w-10" /> },
-    { name: "CSS3", icon: <FaCss3Alt className="h-10 w-10" /> },
+    { name: "Python", icon: <FaPython className="h-10 w-10 text-primary" /> },
+    { name: "Java", icon: <FaJava className="h-10 w-10 text-primary" /> },
+    { name: "C", icon: <SiC className="h-10 w-10 text-primary" /> },
+    { name: "SQL", icon: <SiSqlite className="h-10 w-10 text-primary" /> },
+    { name: "PostgreSQL", icon: <SiPostgresql className="h-10 w-10 text-primary" /> },
+    { name: "MongoDB", icon: <SiMongodb className="h-10 w-10 text-primary" /> },
+    { name: "React", icon: <FaReact className="h-10 w-10 text-primary" /> },
+    { name: "Node.js", icon: <FaNodeJs className="h-10 w-10 text-primary" /> },
+    { name: "Firebase", icon: <SiFirebase className="h-10 w-10 text-primary" /> },
+    { name: "Git", icon: <FaGitAlt className="h-10 w-10 text-primary" /> },
+    { name: "GitHub", icon: <FaGithub className="h-10 w-10 text-primary" /> },
+    { name: "HTML5", icon: <FaHtml5 className="h-10 w-10 text-primary" /> },
+    { name: "CSS3", icon: <FaCss3Alt className="h-10 w-10 text-primary" /> },
   ],
   soft: [
     { name: "Problem Solving", icon: <BrainCircuit className="h-8 w-8 text-primary" /> },
@@ -137,7 +137,7 @@ const sections = {
               <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-5 gap-6">
                 {skillsData.technical.map((skill) => (
                   <div key={skill.name} className="flex flex-col items-center gap-2 group">
-                    <div className="flex items-center justify-center h-16 w-16 rounded-lg bg-background shadow-md transition-all duration-300 group-hover:shadow-primary/20 group-hover:scale-105 text-foreground">
+                    <div className="flex items-center justify-center h-16 w-16 rounded-lg bg-background shadow-md transition-all duration-300 group-hover:shadow-primary/20 group-hover:scale-105">
                       {skill.icon}
                     </div>
                     <p className="text-sm font-medium text-muted-foreground transition-all duration-300 group-hover:text-primary">{skill.name}</p>

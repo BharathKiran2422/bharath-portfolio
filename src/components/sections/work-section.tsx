@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Section, SectionTitle, SectionSubtitle } from "@/components/section-wrapper";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 
 const projects = [
   {
@@ -39,23 +40,23 @@ export default function WorkSection() {
               data-ai-hint={project.hint}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
-            <div className="absolute inset-x-0 bottom-0 p-6 transition-all duration-300 ease-in-out translate-y-[68%] group-hover:translate-y-0">
+             <div className="absolute inset-x-0 bottom-0 p-6 transition-all duration-300 ease-in-out flex flex-col items-start translate-y-[calc(100%-88px)] group-hover:translate-y-0">
                 <h3 className="font-headline text-2xl font-bold text-white">
                     {project.title}
                 </h3>
-                <Link href="#" className="block mt-4 bg-primary/90 text-primary-foreground p-4 rounded-lg transition-colors hover:bg-primary">
+                <Link href="#" className="block mt-4 bg-primary/90 text-primary-foreground p-4 rounded-lg transition-colors hover:bg-primary w-full opacity-0 group-hover:opacity-100">
                     <div className="flex justify-between items-center">
                         <div className="max-w-[85%]">
                             <h4 className="font-semibold text-lg">{project.title}</h4>
-                            <p className="text-sm text-primary-foreground/80 mt-1 truncate">{project.description}</p>
+                            <p className="text-sm text-primary-foreground/80 mt-1">{project.description}</p>
                              <div className="flex flex-wrap gap-2 mt-2">
                                 {project.tags.map((tag) => (
-                                <span key={tag} className="text-xs font-medium text-primary-foreground/70">{tag}</span>
+                                <Badge key={tag} variant="secondary" className="text-xs font-medium">{tag}</Badge>
                                 ))}
                             </div>
                         </div>
                         <div className="flex-shrink-0">
-                             <ArrowUpRight className="h-6 w-6 transition-transform duration-500 group-hover:rotate-45" />
+                             <ArrowUpRight className="h-6 w-6 transition-transform duration-500 group-hover:rotate-[360deg]" />
                         </div>
                     </div>
                 </Link>

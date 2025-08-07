@@ -1,24 +1,22 @@
-"use server";
+'use server';
 
 import { z } from 'zod';
-import { Resend } from 'resend';
-import { EmailTemplate } from '@/components/email-template';
-
-const resend = new Resend(process.env.RESEND_API_KEY);
+import { db } from '@/lib/firebase';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 
 const contactSchema = z.object({
-  name: z.string().min(2, { message: "Name must be at least 2 characters." }),
-  email: z.string().email({ message: "Please enter a valid email." }),
-  message: z.string().min(10, { message: "Message must be at least 10 characters." }),
+  name: z.string().min(2, { message: 'Name must be at least 2 characters.' }),
+  email: z.string().email({ message: 'Please enter a valid email.' }),
+  message: z.string().min(10, { message: 'Message must be at least 10 characters.' }),
 });
 
 type FormState = {
-    message: string;
-    errors?: {
-        name?: string[];
-        email?: string[];
-        message?: string[];
-    };
+  message: string;
+  errors?: {
+    name?: string[];
+    email?: string[];
+    message?: string[];
+  };
 };
 
 export async function submitContactForm(
@@ -33,30 +31,20 @@ export async function submitContactForm(
 
   if (!parsed.success) {
     return {
-      message: 'Failed to send message. Please check your input.',
+      message: 'Failed to save message. Please check your input.',
       errors: parsed.error.flatten().fieldErrors,
     };
   }
 
-  const { name, email, message } = parsed.data;
-
   try {
-    const { data, error } = await resend.emails.send({
-        from: 'Acme <onboarding@resend.dev>', // Replace with your verified domain
-        to: 'bharathkiranobilisetty@gmail.com',
-        subject: `New message from ${name} via Portfolio`,
-        reply_to: email,
-        react: EmailTemplate({ name, email, message }),
+    await addDoc(collection(db, 'messages'), {
+      ...parsed.data,
+      createdAt: serverTimestamp(),
     });
 
-    if (error) {
-        console.error("Resend error:", error);
-        return { message: "Error sending message. Please try again later."};
-    }
-
-    return { message: 'Your message has been sent successfully!' };
-  } catch(e) {
-    console.error("Failed to send email:", e);
-    return { message: "Error sending message. Please try again later." };
+    return { message: 'Your message has been saved successfully!' };
+  } catch (e) {
+    console.error('Failed to save message to Firestore:', e);
+    return { message: 'Error saving message. Please try again later.' };
   }
 }

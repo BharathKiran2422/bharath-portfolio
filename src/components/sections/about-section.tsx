@@ -30,16 +30,19 @@ export default function AboutSection() {
   return (
     <Section id="about" className="bg-card">
       <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
-        <div className="relative mx-auto w-full max-w-md">
-           <Image
-            src="https://placehold.co/600x750.png"
-            alt="About Bharath"
-            width={600}
-            height={750}
-            className="relative z-10 rounded-lg shadow-xl"
-            data-ai-hint="man working"
-          />
-           <div className="absolute -bottom-4 -right-4 -z-0 h-full w-full rounded-lg bg-primary"></div>
+        <div className="group relative mx-auto w-full max-w-md">
+          <div className="relative w-full h-full p-4">
+            <div className="absolute inset-0 border-2 border-primary/30 rounded-2xl transition-colors duration-300 group-hover:border-primary/60"></div>
+            <div className="absolute -top-2 -left-2 -bottom-2 -right-2 rounded-3xl border border-primary/10"></div>
+             <Image
+              src="https://placehold.co/600x750.png"
+              alt="About Bharath"
+              width={600}
+              height={750}
+              className="relative z-10 rounded-xl shadow-xl transition-transform duration-300 ease-in-out group-hover:rotate-0 rotate-[-2deg]"
+              data-ai-hint="man working"
+            />
+          </div>
         </div>
         <div>
           <h3 className="font-headline text-lg font-medium text-primary">About Me</h3>
@@ -54,12 +57,12 @@ export default function AboutSection() {
       <div className="mt-20">
         <div className="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {services.map((service) => (
-            <Card key={service.title}>
+            <Card key={service.title} className="flex flex-col">
               <CardHeader>
                 {service.icon}
                 <CardTitle className="pt-4">{service.title}</CardTitle>
               </CardHeader>
-              <CardContent>
+              <CardContent className="flex-grow">
                 <p className="text-muted-foreground">{service.description}</p>
               </CardContent>
             </Card>

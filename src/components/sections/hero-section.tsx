@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 export default function HeroSection() {
   return (
-    <section id="home" className="relative overflow-hidden py-24 sm:py-32 lg:py-40">
+    <section id="home" className="relative overflow-hidden pt-12 pb-24 sm:pt-16 sm:pb-32 lg:pt-20 lg:pb-40">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
           <div className="max-w-xl animate-in fade-in slide-in-from-left-8 duration-1000">

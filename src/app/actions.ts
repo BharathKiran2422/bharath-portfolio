@@ -2,7 +2,7 @@
 
 import { z } from 'zod';
 import { db } from '@/lib/firebase';
-import { collection, addDoc, getDocs, query, orderBy, serverTimestamp, Timestamp } from 'firebase/firestore';
+import { collection, addDoc, getDocs, query, orderBy, serverTimestamp, Timestamp, doc, deleteDoc, updateDoc, writeBatch } from 'firebase/firestore';
 
 const contactSchema = z.object({
   name: z.string().min(2, { message: 'Name must be at least 2 characters.' }),
@@ -39,6 +39,7 @@ export async function submitContactForm(
   try {
     await addDoc(collection(db, 'Messages'), {
       ...parsed.data,
+      read: false, // Add read status
       createdAt: serverTimestamp(),
     });
 
@@ -64,11 +65,10 @@ export interface Message {
   name: string;
   email: string;
   message: string;
-  createdAt: string; // Changed from Timestamp to string
+  createdAt: string;
+  read: boolean;
 }
 
-// This function will be called from the admin page to fetch messages.
-// Because it's a server action, it runs with admin privileges and can bypass client-side security rules.
 export async function getMessages(): Promise<{ messages?: Message[]; error?: string; }> {
   try {
     const messagesCollection = collection(db, 'Messages');
@@ -82,13 +82,33 @@ export async function getMessages(): Promise<{ messages?: Message[]; error?: str
         name: data.name,
         email: data.email,
         message: data.message,
-        // Convert timestamp to a serializable format (ISO string)
-        createdAt: createdAtTimestamp.toDate().toISOString(),
+        read: data.read || false,
+        createdAt: createdAtTimestamp ? createdAtTimestamp.toDate().toISOString() : new Date().toISOString(),
       };
     });
     return { messages: messagesData };
   } catch (err: any) {
     console.error('Error fetching messages from server action:', err);
     return { error: 'Failed to load messages: ' + err.message };
+  }
+}
+
+export async function deleteMessage(id: string): Promise<{ success: boolean; error?: string }> {
+  try {
+    await deleteDoc(doc(db, 'Messages', id));
+    return { success: true };
+  } catch (err: any) {
+    console.error('Error deleting message:', err);
+    return { success: false, error: err.message };
+  }
+}
+
+export async function toggleMessageReadStatus(id: string, currentStatus: boolean): Promise<{ success: boolean; error?: string }> {
+  try {
+    await updateDoc(doc(db, 'Messages', id), { read: !currentStatus });
+    return { success: true };
+  } catch (err: any) {
+    console.error('Error updating message status:', err);
+    return { success: false, error: err.message };
   }
 }

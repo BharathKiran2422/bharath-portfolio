@@ -39,7 +39,7 @@ export default function Header() {
         <Link
           key={link.href}
           href={link.href}
-          className="text-sm font-medium transition-colors hover:text-primary"
+          className="text-base font-medium transition-colors hover:text-primary"
           onClick={() => setMobileMenuOpen(false)}
         >
           {link.label}
@@ -55,7 +55,7 @@ export default function Header() {
         isScrolled ? "border-border bg-background/80 backdrop-blur-sm" : ""
       )}
     >
-      <div className="container flex h-20 items-center justify-between px-4 md:px-6">
+      <div className="container flex h-24 items-center justify-between px-4 md:px-6">
         <Link href="/" className="flex items-center gap-2 font-headline text-lg font-bold">
           <Mountain className="h-6 w-6 text-primary" />
           <span>Bharath Kiran</span>

@@ -2,8 +2,6 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { db } from '@/lib/firebase';
-import { collection, getDocs, orderBy, query, Timestamp } from 'firebase/firestore';
 import {
   Table,
   TableBody,
@@ -16,16 +14,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { verifyAdminPassword } from '@/app/actions';
+import { verifyAdminPassword, getMessages, Message } from '@/app/actions';
 import { Label } from '@/components/ui/label';
-
-interface Message {
-  id: string;
-  name: string;
-  email: string;
-  message: string;
-  createdAt: Timestamp;
-}
 
 function AdminPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -54,21 +44,14 @@ function AdminPage() {
     if (!isAuthenticated) return;
 
     const fetchMessages = async () => {
-      try {
-        const messagesCollection = collection(db, 'Messages');
-        const q = query(messagesCollection, orderBy('createdAt', 'desc'));
-        const querySnapshot = await getDocs(q);
-        const messagesData = querySnapshot.docs.map(doc => ({
-          id: doc.id,
-          ...doc.data(),
-        })) as Message[];
-        setMessages(messagesData);
-      } catch (err) {
-        console.error('Error fetching messages:', err);
-        setMessagesError('Failed to load messages. Please ensure you have the correct Firestore permissions.');
-      } finally {
-        setMessagesLoading(false);
+      setMessagesLoading(true);
+      const result = await getMessages();
+      if (result.messages) {
+        setMessages(result.messages);
+      } else if (result.error) {
+        setMessagesError(result.error);
       }
+      setMessagesLoading(false);
     };
 
     fetchMessages();

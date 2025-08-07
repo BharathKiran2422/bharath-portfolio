@@ -268,7 +268,7 @@ function AdminPage() {
                           </Tooltip>
                            <Tooltip>
                             <TooltipTrigger asChild>
-                              <Button variant="ghost" size="icon" onClick={(e) => { e.stopPropagation(); openDeleteDialog(msg.id);}} aria-label="Delete message">
+                              <Button variant="ghost" size="icon" className="hover:bg-destructive/10" onClick={(e) => { e.stopPropagation(); openDeleteDialog(msg.id);}} aria-label="Delete message">
                                 <Trash2 className="h-4 w-4 text-destructive" />
                               </Button>
                             </TooltipTrigger>

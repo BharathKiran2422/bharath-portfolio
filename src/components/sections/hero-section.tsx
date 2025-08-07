@@ -54,7 +54,7 @@ export default function HeroSection() {
             <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-20">
             <div className="relative flex justify-center lg:justify-start animate-in fade-in slide-in-from-right-8 duration-1000 order-1 lg:order-2">
                 <div className="relative h-80 w-80 sm:h-96 sm:w-96 lg:h-[450px] lg:w-[450px] group">
-                    <div className="absolute inset-0.5 bg-gradient-to-r from-primary/50 to-accent/50 rounded-full blur-xl opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-tilt"></div>
+                    <div className="absolute inset-0.5 bg-gradient-to-r from-primary/80 to-accent/80 rounded-full blur-2xl opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-tilt"></div>
                 <Image
                     src="https://placehold.co/600x600.png"
                     alt="Bharath's Profile Picture"

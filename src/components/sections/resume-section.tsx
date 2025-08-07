@@ -204,7 +204,7 @@ export default function ResumeSection() {
   const ActiveContent = sections[activeTab];
 
   return (
-    <Section id="resume" className="bg-background">
+    <Section id="resume" className="bg-card">
       <SectionTitle>My Resume</SectionTitle>
       <SectionSubtitle>
          Check out my qualifications and professional journey.
@@ -215,7 +215,7 @@ export default function ResumeSection() {
             key={tab}
             onClick={() => setActiveTab(tab)}
             variant={activeTab === tab ? "default" : "outline"}
-            className={cn("w-full justify-center capitalize", activeTab !== tab && "bg-muted/50 dark:bg-card hover:bg-muted dark:hover:bg-muted/50")}
+            className={cn("w-full justify-center capitalize", activeTab !== tab && "bg-muted/50 dark:bg-card hover:bg-muted dark:hover:bg-muted/50 hover:text-foreground/80 dark:hover:text-foreground/80")}
           >
             {sections[tab].icon}
             {tab.replace("-", " ")}

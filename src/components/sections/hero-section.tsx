@@ -65,8 +65,8 @@ export default function HeroSection() {
             </div>
           </div>
           <div className="max-w-xl animate-in fade-in slide-in-from-left-8 duration-1000 order-2 lg:order-1 text-center lg:text-left mx-auto lg:mx-0">
-            <h1 className="font-headline text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl md:text-6xl">Hi, I'm Bharath</h1>
-            <p className="mt-2 font-headline text-2xl font-medium text-primary">
+            <h1 className="font-headline text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl md:text-6xl">Hi, I'm <span className="text-primary">Bharath</span></h1>
+            <p className="mt-2 font-headline text-2xl font-medium">
               I'm a <span className="text-primary">{text}</span>
               <span className="animate-ping">|</span>
             </p>

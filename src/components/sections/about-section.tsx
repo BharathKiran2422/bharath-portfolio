@@ -1,28 +1,28 @@
 import Image from "next/image";
 import { Section } from "@/components/section-wrapper";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Briefcase, Code, Cpu, Paintbrush } from "lucide-react";
+import { Code, Server, Smartphone, Database } from "lucide-react";
 
 const services = [
   {
-    icon: <Paintbrush className="h-8 w-8 text-primary" />,
-    title: "UI/UX Design",
-    description: "Crafting visually stunning and user-friendly interfaces that are both beautiful and functional.",
-  },
-  {
     icon: <Code className="h-8 w-8 text-primary" />,
-    title: "Web Development",
-    description: "Building responsive, high-performance websites using modern technologies like React and Node.js.",
+    title: "Web Application Development",
+    description: "Design and develop responsive, interactive, and scalable web applications using modern technologies such as React, Vue.js, and Angular. Custom solutions tailored to meet specific business needs.",
   },
   {
-    icon: <Briefcase className="h-8 w-8 text-primary" />,
-    title: "React Native",
-    description: "Developing cross-platform mobile applications with a focus on performance and user experience.",
+    icon: <Server className="h-8 w-8 text-primary" />,
+    title: "Backend Development",
+    description: "Build robust server-side logic, APIs, and integrations using Node.js, Express, and other frameworks. Ensure secure user authentication, data management, and high-performance systems.",
   },
   {
-    icon: <Cpu className="h-8 w-8 text-primary" />,
-    title: "Data Science",
-    description: "Exploring data to find insights and building introductory machine learning models.",
+    icon: <Smartphone className="h-8 w-8 text-primary" />,
+    title: "Frontend Development",
+    description: "Create user-friendly and visually appealing interfaces with modern JavaScript frameworks like React, along with responsive designs using HTML, CSS, and Tailwind. Ensure cross-browser compatibility and smooth user experiences.",
+  },
+  {
+    icon: <Database className="h-8 w-8 text-primary" />,
+    title: "Database Management",
+    description: "Design and optimize database schemas for efficient data storage and retrieval. Manage both SQL (MySQL, PostgreSQL) and NoSQL (MongoDB) databases, ensuring data integrity and security.",
   },
 ];
 

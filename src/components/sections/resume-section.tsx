@@ -1,4 +1,5 @@
 
+
 "use client";
 
 import { useState } from "react";
@@ -6,9 +7,10 @@ import { Section, SectionTitle, SectionSubtitle } from "@/components/section-wra
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { Briefcase, GraduationCap, Star, Award, User, BrainCircuit, MessageSquare, Lightbulb, BarChart, Sparkles, Timer } from "lucide-react";
+import { Briefcase, GraduationCap, Star, Award, User, BrainCircuit, MessageSquare, Lightbulb, BarChart, Sparkles, Timer, Download } from "lucide-react";
 import { FaPython, FaJava, FaReact, FaNodeJs, FaGitAlt, FaGithub, FaHtml5, FaCss3Alt } from "react-icons/fa";
 import { SiPostgresql, SiMongodb, SiFirebase, SiMysql } from "react-icons/si";
+import Link from "next/link";
 
 const experienceData = [
   {
@@ -206,7 +208,14 @@ export default function ResumeSection() {
 
   return (
     <Section id="resume" className="bg-background">
-      <SectionTitle>My Resume</SectionTitle>
+      <div className="flex justify-center items-center gap-4">
+        <SectionTitle>My Resume</SectionTitle>
+        <Button variant="outline" size="icon" asChild>
+          <Link href="/resume.pdf" download="Bharath_Kiran_Resume.pdf" aria-label="Download Resume">
+            <Download className="h-5 w-5" />
+          </Link>
+        </Button>
+      </div>
       <SectionSubtitle>
          Check out my qualifications and professional journey.
       </SectionSubtitle>

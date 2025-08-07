@@ -95,7 +95,7 @@ export default function HeroSection() {
         <div className="mt-20 grid grid-cols-2 gap-8 md:grid-cols-4 animate-in fade-in slide-in-from-bottom-8 duration-1000">
             {stats.map((stat) => (
                 <div key={stat.label} className="flex items-center justify-center gap-4">
-                    <p className="font-headline text-4xl font-bold text-foreground">{stat.value}</p>
+                    <p className="font-headline text-5xl font-bold text-foreground">{stat.value}</p>
                     <p className="text-sm text-foreground whitespace-pre-wrap">{stat.label.replace(' ', '\n')}</p>
                 </div>
             ))}

@@ -51,7 +51,7 @@ export default function HeroSection() {
     <section id="home" className="relative overflow-hidden pt-12 pb-20 md:pt-16 md:pb-24 bg-background">
       <div className="container mx-auto px-4">
         <div className="flex justify-center">
-            <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
+            <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-20">
             <div className="relative flex justify-center lg:justify-start animate-in fade-in slide-in-from-right-8 duration-1000 order-1 lg:order-2">
                 <div className="relative h-80 w-80 sm:h-96 sm:w-96 lg:h-[450px] lg:w-[450px] group">
                     <div className="absolute inset-0.5 bg-gradient-to-r from-primary/50 to-accent/50 rounded-full blur-xl opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-tilt"></div>
@@ -67,7 +67,7 @@ export default function HeroSection() {
                 </div>
             </div>
             <div className="max-w-xl animate-in fade-in slide-in-from-left-8 duration-1000 order-2 lg:order-1 text-center lg:text-left mx-auto lg:mx-0">
-                <h1 className="font-headline text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl md:text-6xl">Hi, I'm <span className="text-primary">Bharath</span></h1>
+                <h1 className="font-headline text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl md:text-6xl">Hi, I'm <span className="text-primary">Bharath Kiran</span></h1>
                 <p className="mt-2 font-headline text-2xl font-medium">
                 I'm a <span className="text-primary">{text}</span>
                 <span className="animate-ping">|</span>

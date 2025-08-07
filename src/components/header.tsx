@@ -55,9 +55,9 @@ export default function Header() {
         isScrolled ? "border-border bg-background/80 backdrop-blur-sm" : ""
       )}
     >
-      <div className="container flex h-24 items-center justify-between px-4 md:px-6">
-        <Link href="/" className="flex items-center gap-2 font-headline text-lg font-bold">
-          <Mountain className="h-6 w-6 text-primary" />
+      <div className="container flex h-20 items-center justify-between px-4 md:px-6">
+        <Link href="/" className="flex items-center gap-2 font-headline text-xl font-bold">
+          <Mountain className="h-8 w-8 text-primary" />
           <span>Bharath Kiran</span>
         </Link>
 
@@ -76,8 +76,8 @@ export default function Header() {
               <SheetContent side="right">
                 <SheetHeader>
                   <SheetTitle>
-                    <Link href="/" className="flex items-center gap-2 font-headline text-lg font-bold">
-                      <Mountain className="h-6 w-6 text-primary" />
+                    <Link href="/" className="flex items-center gap-2 font-headline text-xl font-bold">
+                      <Mountain className="h-8 w-8 text-primary" />
                       <span>Bharath Kiran</span>
                     </Link>
                   </SheetTitle>

@@ -55,7 +55,7 @@ function AdminPage() {
 
     const fetchMessages = async () => {
       try {
-        const messagesCollection = collection(db, 'messages');
+        const messagesCollection = collection(db, 'Messages');
         const q = query(messagesCollection, orderBy('createdAt', 'desc'));
         const querySnapshot = await getDocs(q);
         const messagesData = querySnapshot.docs.map(doc => ({

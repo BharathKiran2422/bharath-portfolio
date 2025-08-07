@@ -37,7 +37,7 @@ export async function submitContactForm(
   }
 
   try {
-    await addDoc(collection(db, 'messages'), {
+    await addDoc(collection(db, 'Messages'), {
       ...parsed.data,
       createdAt: serverTimestamp(),
     });

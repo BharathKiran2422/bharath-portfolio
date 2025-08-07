@@ -109,9 +109,9 @@ const sections = {
     subtitle: "My academic journey has provided me with a strong foundation in computer science and a passion for continuous learning.",
     icon: <GraduationCap className="mr-2 h-4 w-4" />,
     content: (
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {educationData.map((item, index) => (
-          <Card key={index} className="bg-muted/30">
+          <Card key={index} className={cn("bg-muted/30", index === 0 && "md:col-span-2")}>
             <CardContent className="p-6">
               <p className="text-sm text-primary">{item.date}</p>
               <h3 className="mt-2 font-headline text-lg font-semibold">{item.title}</h3>
@@ -234,8 +234,3 @@ export default function ResumeSection() {
     </Section>
   );
 }
-
-    
-
-    
-

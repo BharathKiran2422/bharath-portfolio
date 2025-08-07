@@ -16,7 +16,6 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { verifyAdminPassword, getMessages, deleteMessage, toggleMessageReadStatus, Message } from '@/app/actions';
 import { Label } from '@/components/ui/label';
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Trash2, Eye, EyeOff } from 'lucide-react';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useToast } from '@/hooks/use-toast';
@@ -29,8 +28,15 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-  AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogClose,
+} from "@/components/ui/dialog"
 
 function AdminPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -43,6 +49,10 @@ function AdminPage() {
   const [messagesError, setMessagesError] = useState<string | null>(null);
   
   const [filter, setFilter] = useState('all');
+  const [selectedMessage, setSelectedMessage] = useState<Message | null>(null);
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [deleteAlertOpen, setDeleteAlertOpen] = useState(false);
+  const [messageToDelete, setMessageToDelete] = useState<string | null>(null);
   const { toast } = useToast();
 
   const handlePasswordSubmit = async (e: React.FormEvent) => {
@@ -74,17 +84,26 @@ function AdminPage() {
     fetchMessages();
   }, [isAuthenticated]);
 
-  const handleDelete = async (id: string) => {
-    const result = await deleteMessage(id);
+  const handleDelete = async () => {
+    if (!messageToDelete) return;
+    const result = await deleteMessage(messageToDelete);
     if (result.success) {
       toast({ title: "Success", description: "Message deleted successfully." });
       fetchMessages(); // Refresh messages
     } else {
       toast({ title: "Error", description: `Failed to delete message: ${result.error}`, variant: 'destructive' });
     }
+    setDeleteAlertOpen(false);
+    setMessageToDelete(null);
   };
 
-  const handleToggleRead = async (id: string, currentStatus: boolean) => {
+  const openDeleteDialog = (id: string) => {
+    setMessageToDelete(id);
+    setDeleteAlertOpen(true);
+  }
+
+  const handleToggleRead = async (id: string, currentStatus: boolean, e: React.MouseEvent) => {
+    e.stopPropagation(); // Prevent row click from triggering
     const result = await toggleMessageReadStatus(id, currentStatus);
     if (result.success) {
       toast({ title: "Success", description: `Message marked as ${!currentStatus ? 'read' : 'unread'}.` });
@@ -100,6 +119,11 @@ function AdminPage() {
     if (filter === 'unread') return messages.filter(m => !m.read);
     return messages;
   }, [filter, messages]);
+
+  const handleRowClick = (msg: Message) => {
+    setSelectedMessage(msg);
+    setDialogOpen(true);
+  }
 
   if (!isAuthenticated) {
     return (
@@ -178,48 +202,22 @@ function AdminPage() {
                 </TableHeader>
                 <TableBody>
                   {filteredMessages.map((msg) => (
-                    <TableRow key={msg.id} className={!msg.read ? 'bg-muted/50' : ''}>
-                       <TableCell className="text-muted-foreground">
+                    <TableRow key={msg.id} onClick={() => handleRowClick(msg)} className={cn("cursor-pointer", !msg.read && 'bg-muted/50')}>
+                       <TableCell className="text-muted-foreground whitespace-nowrap">
                         {msg.createdAt ? new Date(msg.createdAt).toLocaleString() : 'N/A'}
                       </TableCell>
                       <TableCell className="font-medium">{msg.name}</TableCell>
                       <TableCell>{msg.email}</TableCell>
-                      <TableCell>
-                         <Popover>
-                          <PopoverTrigger asChild>
-                            <span className="cursor-pointer hover:text-primary">
-                                {msg.message.length > 50 ? `${msg.message.substring(0, 50)}...` : msg.message}
-                            </span>
-                          </PopoverTrigger>
-                          <PopoverContent className="w-80">
-                            <h4 className="font-medium mb-2">Full Message</h4>
-                            <p className="text-sm text-muted-foreground">{msg.message}</p>
-                          </PopoverContent>
-                        </Popover>
+                      <TableCell className="max-w-[300px] truncate">
+                        {msg.message}
                       </TableCell>
                       <TableCell className="text-right">
-                        <Button variant="ghost" size="icon" onClick={() => handleToggleRead(msg.id, msg.read)} aria-label={msg.read ? 'Mark as unread' : 'Mark as read'}>
+                        <Button variant="ghost" size="icon" onClick={(e) => handleToggleRead(msg.id, msg.read, e)} aria-label={msg.read ? 'Mark as unread' : 'Mark as read'}>
                            {msg.read ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                         </Button>
-                         <AlertDialog>
-                          <AlertDialogTrigger asChild>
-                             <Button variant="ghost" size="icon" aria-label="Delete message">
-                                <Trash2 className="h-4 w-4 text-destructive" />
-                              </Button>
-                          </AlertDialogTrigger>
-                          <AlertDialogContent>
-                            <AlertDialogHeader>
-                              <AlertDialogTitle>Are you sure?</AlertDialogTitle>
-                              <AlertDialogDescription>
-                                This action cannot be undone. This will permanently delete the message.
-                              </AlertDialogDescription>
-                            </AlertDialogHeader>
-                            <AlertDialogFooter>
-                              <AlertDialogCancel>Cancel</AlertDialogCancel>
-                              <AlertDialogAction onClick={() => handleDelete(msg.id)}>Delete</AlertDialogAction>
-                            </AlertDialogFooter>
-                          </AlertDialogContent>
-                        </AlertDialog>
+                         <Button variant="ghost" size="icon" onClick={(e) => { e.stopPropagation(); openDeleteDialog(msg.id);}} aria-label="Delete message">
+                            <Trash2 className="h-4 w-4 text-destructive" />
+                          </Button>
                       </TableCell>
                     </TableRow>
                   ))}
@@ -229,6 +227,45 @@ function AdminPage() {
           </CardContent>
         </Card>
       </main>
+       <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+        <DialogContent className="sm:max-w-xl">
+          {selectedMessage && (
+            <>
+              <DialogHeader>
+                <DialogTitle>Message from {selectedMessage.name}</DialogTitle>
+                <DialogDescription>
+                  Received on {new Date(selectedMessage.createdAt).toLocaleString()}
+                </DialogDescription>
+              </DialogHeader>
+              <div className="space-y-4 py-4">
+                <div>
+                  <h4 className="font-semibold">Email</h4>
+                  <p className="text-muted-foreground">{selectedMessage.email}</p>
+                </div>
+                <div>
+                  <h4 className="font-semibold">Message</h4>
+                  <p className="text-muted-foreground whitespace-pre-wrap">{selectedMessage.message}</p>
+                </div>
+              </div>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
+
+      <AlertDialog open={deleteAlertOpen} onOpenChange={setDeleteAlertOpen}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+            <AlertDialogDescription>
+              This action cannot be undone. This will permanently delete the message.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel onClick={() => setMessageToDelete(null)}>Cancel</AlertDialogCancel>
+            <AlertDialogAction onClick={handleDelete}>Delete</AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 }

@@ -16,7 +16,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { verifyAdminPassword, getMessages, deleteMessage, toggleMessageReadStatus, Message } from '@/app/actions';
 import { Label } from '@/components/ui/label';
-import { Trash2, Eye, EyeOff } from 'lucide-react';
+import { Trash2, Eye, EyeOff, LogOut } from 'lucide-react';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useToast } from '@/hooks/use-toast';
 import {
@@ -35,8 +35,9 @@ import {
   DialogHeader,
   DialogTitle,
   DialogDescription,
-  DialogClose,
 } from "@/components/ui/dialog"
+import { cn } from '@/lib/utils';
+
 
 function AdminPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -55,12 +56,20 @@ function AdminPage() {
   const [messageToDelete, setMessageToDelete] = useState<string | null>(null);
   const { toast } = useToast();
 
+  useEffect(() => {
+    // Check for session token on initial load
+    if (sessionStorage.getItem('admin-authenticated') === 'true') {
+      setIsAuthenticated(true);
+    }
+  }, []);
+
   const handlePasswordSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError(null);
     const result = await verifyAdminPassword(password);
     if (result.success) {
+      sessionStorage.setItem('admin-authenticated', 'true');
       setIsAuthenticated(true);
     } else {
       setError(result.error || 'An unknown error occurred.');
@@ -125,6 +134,13 @@ function AdminPage() {
     setDialogOpen(true);
   }
 
+  const handleLogout = () => {
+    sessionStorage.removeItem('admin-authenticated');
+    setIsAuthenticated(false);
+    setPassword('');
+    setError(null);
+  }
+
   if (!isAuthenticated) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-background">
@@ -161,8 +177,16 @@ function AdminPage() {
       <main className="container mx-auto px-4 py-12 md:px-6">
         <Card>
           <CardHeader>
-            <CardTitle className="text-2xl font-bold tracking-tight">Contact Form Submissions</CardTitle>
-            <CardDescription>View and manage messages from your visitors.</CardDescription>
+            <div className="flex justify-between items-center">
+                <div>
+                    <CardTitle className="text-2xl font-bold tracking-tight">Contact Form Submissions</CardTitle>
+                    <CardDescription>View and manage messages from your visitors.</CardDescription>
+                </div>
+                <Button variant="outline" size="sm" onClick={handleLogout}>
+                    <LogOut className="mr-2 h-4 w-4" />
+                    Logout
+                </Button>
+            </div>
              <Tabs value={filter} onValueChange={setFilter} className="pt-4">
               <TabsList>
                 <TabsTrigger value="all">All</TabsTrigger>
@@ -180,7 +204,6 @@ function AdminPage() {
                     <div className="space-y-2 flex-grow">
                       <Skeleton className="h-4 w-1/4" />
                       <Skeleton className="h-4 w-1/2" />
-                      <Skeleton className="h-4 w-3/4" />
                     </div>
                      <Skeleton className="h-8 w-8" />
                      <Skeleton className="h-8 w-8" />
@@ -271,3 +294,5 @@ function AdminPage() {
 }
 
 export default AdminPage;
+
+    

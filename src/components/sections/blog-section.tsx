@@ -72,7 +72,7 @@ const DotButton = ({ selected, onClick }: { selected: boolean; onClick: () => vo
 
 export default function BlogSection() {
   const autoplay = useRef(
-    Autoplay({ delay: 4000, stopOnInteraction: true, stopOnMouseEnter: true })
+    Autoplay({ delay: 4000, stopOnInteraction: false, stopOnMouseEnter: true })
   );
 
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [autoplay.current]);

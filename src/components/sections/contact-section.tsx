@@ -1,3 +1,4 @@
+
 "use client"
 
 import React, { useEffect } from 'react';
@@ -11,11 +12,12 @@ import { Button } from "@/components/ui/button";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
 import { submitContactForm } from "@/app/actions";
 import { useToast } from "@/hooks/use-toast";
+import { Separator } from '@/components/ui/separator';
 
-const contactInfo = [
-    { icon: <Mail className="h-6 w-6 text-primary" />, text: "bharathkiranobilisetty@gmail.com" },
-    { icon: <Phone className="h-6 w-6 text-primary" />, text: "+91 8639678884" },
-    { icon: <MapPin className="h-6 w-6 text-primary" />, text: "Vijayawada, India" },
+const contactDetails = [
+    { icon: <Mail className="h-5 w-5 text-primary" />, text: "bharathkiranobilisetty@gmail.com" },
+    { icon: <Phone className="h-5 w-5 text-primary" />, text: "+91 8639678884" },
+    { icon: <MapPin className="h-5 w-5 text-primary" />, text: "Vijayawada and Hyderabad, India" },
 ];
 
 function SubmitButton() {
@@ -62,14 +64,21 @@ export default function ContactSection() {
       </SectionSubtitle>
       <div className="mt-12 grid grid-cols-1 gap-8 lg:grid-cols-3">
         <div className="space-y-6">
-          {contactInfo.map((item, index) => (
-            <Card key={index}>
-              <CardContent className="flex items-center gap-4 p-6">
-                {item.icon}
-                <span className="font-medium">{item.text}</span>
+           <Card>
+              <CardContent className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 p-6 text-center sm:text-left">
+                {contactDetails.map((item, index) => (
+                  <React.Fragment key={index}>
+                    <div className="flex items-center gap-3">
+                      {item.icon}
+                      <span className="font-medium text-sm break-all">{item.text}</span>
+                    </div>
+                    {index < contactDetails.length - 1 && (
+                      <Separator orientation="vertical" className="h-6 hidden sm:block" />
+                    )}
+                  </React.Fragment>
+                ))}
               </CardContent>
             </Card>
-          ))}
         </div>
         <div className="lg:col-span-2">
           <Card>

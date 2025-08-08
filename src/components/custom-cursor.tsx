@@ -104,7 +104,7 @@ export default function CustomCursor() {
     const renderCursorIcon = () => {
         switch (cursorType) {
             case 'pointer':
-                return <Hand className="w-8 h-8 text-primary-foreground bg-primary p-1 rounded-full" />;
+                return <Hand className="w-8 h-8 text-primary" />;
             case 'text':
                 return <div className={cn("w-0.5 h-6", theme === 'dark' ? 'bg-white' : 'bg-black')} />;
             default:

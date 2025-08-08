@@ -62,7 +62,7 @@ export default function ContactSection() {
       <SectionSubtitle>
         Have a project in mind or just want to say hi? Feel free to reach out.
       </SectionSubtitle>
-      <div className="mt-12 grid grid-cols-1 gap-8 lg:grid-cols-3">
+      <div className="mt-12 grid grid-cols-1 gap-8">
         <div className="space-y-6">
            <Card>
               <CardContent className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 p-6 text-center sm:text-left">
@@ -80,7 +80,7 @@ export default function ContactSection() {
               </CardContent>
             </Card>
         </div>
-        <div className="lg:col-span-2">
+        <div>
           <Card>
             <CardHeader>
               <CardTitle>Send me a message</CardTitle>

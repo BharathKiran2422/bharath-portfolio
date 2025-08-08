@@ -88,3 +88,37 @@
     @apply from-purple-600 to-purple-400;
   }
 }
+
+@layer utilities {
+  .embla {
+    overflow: hidden;
+  }
+  .embla__container {
+    display: flex;
+  }
+  .embla__slide {
+    flex: 0 0 100%;
+    min-width: 0;
+  }
+
+  @media (min-width: 768px) {
+    .embla__slide {
+      flex: 0 0 50%;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .embla__slide {
+      flex: 0 0 33.3333%;
+    }
+  }
+
+  .embla__slide__inner {
+    transition: transform 0.3s ease;
+    will-change: transform;
+  }
+
+  .embla__slide.is-snapped .embla__slide__inner {
+    transform: scale(1.05);
+  }
+}

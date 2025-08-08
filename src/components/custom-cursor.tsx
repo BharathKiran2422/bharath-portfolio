@@ -42,8 +42,15 @@ export default function CustomCursor() {
     const [cursorType, setCursorType] = useState('default');
     const [isMouseDown, setIsMouseDown] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
+    const [isClient, setIsClient] = useState(false);
 
     useEffect(() => {
+        setIsClient(true);
+    }, []);
+
+    useEffect(() => {
+        if (!isClient) return;
+        
         const updatePosition = (e: MouseEvent) => {
             setPosition({ x: e.clientX, y: e.clientY });
             if (!isVisible) setIsVisible(true);
@@ -77,7 +84,11 @@ export default function CustomCursor() {
             document.removeEventListener('mouseup', handleMouseUp);
             document.body.removeEventListener('mouseleave', handleMouseLeave);
         };
-    }, [isVisible]);
+    }, [isClient, isVisible]);
+
+    if (!isClient) {
+        return null;
+    }
 
     const cursorClasses = cn(
         'fixed top-0 left-0 z-[9999] pointer-events-none transition-transform duration-200 ease-in-out',

@@ -1,8 +1,9 @@
 import type {Metadata} from 'next';
 import './globals.css';
+import '@/styles/target-cursor.css';
 import { ThemeProvider } from '@/components/theme-provider';
 import { Toaster } from '@/components/ui/toaster';
-import CustomCursor from '@/components/custom-cursor';
+import TargetCursor from '@/components/target-cursor';
 
 export const metadata: Metadata = {
   title: 'Bharath Kiran',
@@ -29,7 +30,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <CustomCursor />
+          <TargetCursor />
           {children}
           <Toaster />
         </ThemeProvider>

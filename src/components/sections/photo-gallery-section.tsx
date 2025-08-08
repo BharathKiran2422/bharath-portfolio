@@ -1,6 +1,7 @@
+
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { Section, SectionTitle, SectionSubtitle } from "@/components/section-wrapper";
 import { Button } from "@/components/ui/button";
@@ -19,6 +20,9 @@ const photos = [
   { src: "https://placehold.co/600x400.png", alt: "Hackathon Event", category: "events", hint: "hackathon event" },
   { src: "https://placehold.co/600x400.png", alt: "Candid Work Moment", category: "behind-the-scenes", hint: "people working" },
   { src: "https://placehold.co/600x400.png", alt: "Travel Highlight", category: "personal", hint: "city travel" },
+  { src: "https://placehold.co/600x400.png", alt: "Nature Close-up", category: "nature", hint: "forest path" },
+  { src: "https://placehold.co/800x600.png", alt: "Code on Screen", category: "development", hint: "programming code", className: "md:col-span-2" },
+  { src: "https://placehold.co/600x400.png", alt: "Conference Talk", category: "events", hint: "public speaking" },
 ];
 
 const tabs: { key: Category; label: string; icon: React.ReactNode }[] = [
@@ -30,11 +34,27 @@ const tabs: { key: Category; label: string; icon: React.ReactNode }[] = [
   { key: "nature", label: "Nature", icon: <Mountain className="mr-2 h-4 w-4" /> },
 ];
 
+// Fisher-Yates shuffle algorithm
+const shuffleArray = <T,>(array: T[]): T[] => {
+  const newArray = [...array];
+  for (let i = newArray.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+  }
+  return newArray;
+};
+
 export default function PhotoGallerySection() {
   const [activeTab, setActiveTab] = useState<Category>("all");
+  const [randomizedPhotos, setRandomizedPhotos] = useState<typeof photos>([]);
+
+  useEffect(() => {
+    // Only run on the client
+    setRandomizedPhotos(shuffleArray(photos).slice(0, 7));
+  }, []);
 
   const filteredPhotos = activeTab === "all"
-    ? photos
+    ? randomizedPhotos
     : photos.filter(p => p.category === activeTab);
 
   return (

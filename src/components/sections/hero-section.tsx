@@ -8,6 +8,12 @@ import { Github, Linkedin, Send } from 'lucide-react';
 import Link from 'next/link';
 import { SiLeetcode, SiCodechef, SiGeeksforgeeks } from "react-icons/si";
 import { FaInstagram } from "react-icons/fa";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 const stats = [
     { value: "300+", label: "Leetcode solved" },
@@ -79,30 +85,74 @@ export default function HeroSection() {
                 I specialize in creating intuitive, beautiful, and user-friendly digital experiences. From concept to deployment, I bring ideas to life with clean code and thoughtful design using technologies like React, Node.js, and Firebase.
                 </p>
                 <div className="mt-10 flex items-center justify-center lg:justify-start gap-4">
-                <Button size="lg" asChild>
-                    <Link href="#contact">
-                    <Send className="mr-2 h-5 w-5" />
-                    Hire Me
-                    </Link>
-                </Button>
-                <Link href="https://github.com/BharathKiran2422" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary">
-                    <Github className="h-6 w-6" />
-                </Link>
-                <Link href="https://www.linkedin.com/in/bharath-kiran/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary">
-                    <Linkedin className="h-6 w-6" />
-                </Link>
-                <Link href="https://leetcode.com/Bharath_Kiran/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary">
-                    <SiLeetcode className="h-6 w-6" />
-                </Link>
-                <Link href="https://www.codechef.com/users/bharath2422" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary">
-                    <SiCodechef className="h-6 w-6" />
-                </Link>
-                 <Link href="https://www.geeksforgeeks.org/user/bharath_kiran/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary">
-                    <SiGeeksforgeeks className="h-6 w-6" />
-                </Link>
-                <Link href="https://www.instagram.com/bharath2422_/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary">
-                    <FaInstagram className="h-6 w-6" />
-                </Link>
+                  <Button size="lg" asChild>
+                      <Link href="#contact">
+                      <Send className="mr-2 h-5 w-5" />
+                      Hire Me
+                      </Link>
+                  </Button>
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <Link href="https://github.com/BharathKiran2422" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary">
+                            <Github className="h-6 w-6" />
+                        </Link>
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>GitHub</p>
+                      </TooltipContent>
+                    </Tooltip>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <Link href="https://www.linkedin.com/in/bharath-kiran/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary">
+                            <Linkedin className="h-6 w-6" />
+                        </Link>
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>LinkedIn</p>
+                      </TooltipContent>
+                    </Tooltip>
+                     <Tooltip>
+                      <TooltipTrigger asChild>
+                        <Link href="https://leetcode.com/Bharath_Kiran/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary">
+                            <SiLeetcode className="h-6 w-6" />
+                        </Link>
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>LeetCode</p>
+                      </TooltipContent>
+                    </Tooltip>
+                     <Tooltip>
+                      <TooltipTrigger asChild>
+                        <Link href="https://www.codechef.com/users/bharath2422" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary">
+                            <SiCodechef className="h-6 w-6" />
+                        </Link>
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>CodeChef</p>
+                      </TooltipContent>
+                    </Tooltip>
+                     <Tooltip>
+                      <TooltipTrigger asChild>
+                        <Link href="https://www.geeksforgeeks.org/user/bharath_kiran/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary">
+                            <SiGeeksforgeeks className="h-6 w-6" />
+                        </Link>
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>GeeksforGeeks</p>
+                      </TooltipContent>
+                    </Tooltip>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <Link href="https://www.instagram.com/bharath2422_/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary">
+                            <FaInstagram className="h-6 w-6" />
+                        </Link>
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>Instagram</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
                 </div>
             </div>
             </div>

@@ -4,7 +4,7 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import Image from "next/image";
 import { Section, SectionTitle, SectionSubtitle } from "@/components/section-wrapper";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { cn } from "@/lib/utils";
 import useEmblaCarousel from "embla-carousel-react";
@@ -154,11 +154,10 @@ export default function BlogSection() {
                         </div>
                       </div>
                     </CardHeader>
-                    <CardContent className="p-6 flex-grow">
-                      <CardTitle className="font-headline text-xl group-hover:text-primary transition-colors">
+                    <CardContent className="p-6 flex-grow transition-opacity duration-300 group-hover:opacity-0">
+                      <CardTitle className="font-headline text-xl group-hover:text-primary">
                         {post.title}
                       </CardTitle>
-                      <CardDescription className="mt-2 line-clamp-3">{post.description}</CardDescription>
                     </CardContent>
                   </Card>
                 </div>

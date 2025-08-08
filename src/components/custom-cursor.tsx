@@ -4,7 +4,7 @@
 import React, { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
-import { Hand } from 'lucide-react';
+import { FaHandPointUp } from 'react-icons/fa';
 
 const PointerIcon = ({ className }: { className?: string }) => (
   <svg
@@ -104,7 +104,7 @@ export default function CustomCursor() {
     const renderCursorIcon = () => {
         switch (cursorType) {
             case 'pointer':
-                return <Hand className="w-8 h-8 text-primary" />;
+                return <FaHandPointUp className="w-8 h-8 text-primary" />;
             case 'text':
                 return <div className={cn("w-0.5 h-6", theme === 'dark' ? 'bg-white' : 'bg-black')} />;
             default:

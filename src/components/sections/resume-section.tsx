@@ -35,7 +35,7 @@ const experienceData = [
 
 const educationData = {
   btech: {
-    icon: <GraduationCap className="h-6 w-6 text-primary" />,
+    icon: <GraduationCap className="h-6 w-6 icon-gradient-primary" />,
     title: "B.Tech – Computer Science & Engineering",
     institution: "Andhra Loyola Institute of Engineering and Technology, JNTUK",
     location: "Vijayawada",
@@ -65,26 +65,26 @@ const educationData = {
 
 const skillsData = {
   technical: [
-    { name: "Python", icon: <FaPython className="h-10 w-10 text-primary" /> },
-    { name: "Java", icon: <FaJava className="h-10 w-10 text-primary" /> },
-    { name: "MySQL", icon: <SiMysql className="h-10 w-10 text-primary" /> },
-    { name: "PostgreSQL", icon: <SiPostgresql className="h-10 w-10 text-primary" /> },
-    { name: "MongoDB", icon: <SiMongodb className="h-10 w-10 text-primary" /> },
-    { name: "React", icon: <FaReact className="h-10 w-10 text-primary" /> },
-    { name: "Node.js", icon: <FaNodeJs className="h-10 w-10 text-primary" /> },
-    { name: "Firebase", icon: <SiFirebase className="h-10 w-10 text-primary" /> },
-    { name: "Git", icon: <FaGitAlt className="h-10 w-10 text-primary" /> },
-    { name: "GitHub", icon: <FaGithub className="h-10 w-10 text-primary" /> },
-    { name: "HTML5", icon: <FaHtml5 className="h-10 w-10 text-primary" /> },
-    { name: "CSS3", icon: <FaCss3Alt className="h-10 w-10 text-primary" /> },
+    { name: "Python", icon: <FaPython className="h-10 w-10 icon-gradient-primary" /> },
+    { name: "Java", icon: <FaJava className="h-10 w-10 icon-gradient-primary" /> },
+    { name: "MySQL", icon: <SiMysql className="h-10 w-10 icon-gradient-primary" /> },
+    { name: "PostgreSQL", icon: <SiPostgresql className="h-10 w-10 icon-gradient-primary" /> },
+    { name: "MongoDB", icon: <SiMongodb className="h-10 w-10 icon-gradient-primary" /> },
+    { name: "React", icon: <FaReact className="h-10 w-10 icon-gradient-primary" /> },
+    { name: "Node.js", icon: <FaNodeJs className="h-10 w-10 icon-gradient-primary" /> },
+    { name: "Firebase", icon: <SiFirebase className="h-10 w-10 icon-gradient-primary" /> },
+    { name: "Git", icon: <FaGitAlt className="h-10 w-10 icon-gradient-primary" /> },
+    { name: "GitHub", icon: <FaGithub className="h-10 w-10 icon-gradient-primary" /> },
+    { name: "HTML5", icon: <FaHtml5 className="h-10 w-10 icon-gradient-primary" /> },
+    { name: "CSS3", icon: <FaCss3Alt className="h-10 w-10 icon-gradient-primary" /> },
   ],
   soft: [
-    { name: "Problem Solving", icon: <BrainCircuit className="h-8 w-8 text-primary" /> },
-    { name: "Communication", icon: <MessageSquare className="h-8 w-8 text-primary" /> },
-    { name: "Quick Learning", icon: <Lightbulb className="h-8 w-8 text-primary" /> },
-    { name: "Analytical Thinking", icon: <BarChart className="h-8 w-8 text-primary" /> },
-    { name: "Smart Work", icon: <Sparkles className="h-8 w-8 text-primary" /> },
-    { name: "Patience", icon: <Timer className="h-8 w-8 text-primary" /> },
+    { name: "Problem Solving", icon: <BrainCircuit className="h-8 w-8 icon-gradient-primary" /> },
+    { name: "Communication", icon: <MessageSquare className="h-8 w-8 icon-gradient-primary" /> },
+    { name: "Quick Learning", icon: <Lightbulb className="h-8 w-8 icon-gradient-primary" /> },
+    { name: "Analytical Thinking", icon: <BarChart className="h-8 w-8 icon-gradient-primary" /> },
+    { name: "Smart Work", icon: <Sparkles className="h-8 w-8 icon-gradient-primary" /> },
+    { name: "Patience", icon: <Timer className="h-8 w-8 icon-gradient-primary" /> },
   ],
 };
 
@@ -106,7 +106,7 @@ const sections = {
         {experienceData.map((item, index) => (
           <Card key={index} className={cn("bg-muted/30", index === 0 && "md:col-span-2")}>
             <CardContent className="p-6">
-              <p className="text-sm text-primary">{item.date}</p>
+              <p className="text-sm text-gradient-primary">{item.date}</p>
               <h3 className="mt-2 font-headline text-xl font-semibold">{item.title}</h3>
               <p className="mt-1 text-muted-foreground">{item.company}</p>
               <p className="mt-4 text-sm text-muted-foreground">{item.description}</p>
@@ -189,7 +189,7 @@ const sections = {
        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <Card className="bg-muted/30">
             <CardContent className="p-6">
-              <h3 className="font-headline text-lg font-semibold text-primary mb-6 text-center">Technical Skills</h3>
+              <h3 className="font-headline text-lg font-semibold text-gradient-primary mb-6 text-center">Technical Skills</h3>
               <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-5 gap-6">
                 {skillsData.technical.map((skill) => (
                   <div key={skill.name} className="flex flex-col items-center gap-2 group">
@@ -204,7 +204,7 @@ const sections = {
           </Card>
           <Card className="bg-muted/30">
             <CardContent className="p-6">
-              <h3 className="font-headline text-lg font-semibold text-primary mb-6 text-center">Soft Skills</h3>
+              <h3 className="font-headline text-lg font-semibold text-gradient-primary mb-6 text-center">Soft Skills</h3>
               <div className="grid grid-cols-3 gap-6">
                 {skillsData.soft.map((skill) => (
                   <div key={skill.name} className="flex flex-col items-center gap-2 group">
@@ -229,7 +229,7 @@ const sections = {
         {certificationsData.map((cert, index) => (
           <Card key={index} className="bg-muted/30">
             <CardContent className="p-6 text-center">
-              <Award className="h-12 w-12 text-primary mx-auto" />
+              <Award className="h-12 w-12 icon-gradient-primary mx-auto" />
               <h3 className="mt-4 font-headline text-lg font-semibold">{cert.title}</h3>
               <p className="mt-1 text-muted-foreground">{cert.issuer}</p>
             </CardContent>

@@ -5,22 +5,22 @@ import { Code, Server, Smartphone, Database } from "lucide-react";
 
 const services = [
   {
-    icon: <Code className="h-8 w-8 text-primary" />,
+    icon: <Code className="h-8 w-8 icon-gradient-primary" />,
     title: "Web Application Development",
     description: "Design and develop responsive, interactive, and scalable web applications using modern technologies such as React, Vue.js, and Angular. Custom solutions tailored to meet specific business needs.",
   },
   {
-    icon: <Server className="h-8 w-8 text-primary" />,
+    icon: <Server className="h-8 w-8 icon-gradient-primary" />,
     title: "Backend Development",
     description: "Build robust server-side logic, APIs, and integrations using Node.js, Express, and other frameworks. Ensure secure user authentication, data management, and high-performance systems.",
   },
   {
-    icon: <Smartphone className="h-8 w-8 text-primary" />,
+    icon: <Smartphone className="h-8 w-8 icon-gradient-primary" />,
     title: "Frontend Development",
     description: "Create user-friendly and visually appealing interfaces with modern JavaScript frameworks like React, along with responsive designs using HTML, CSS, and Tailwind. Ensure cross-browser compatibility and smooth user experiences.",
   },
   {
-    icon: <Database className="h-8 w-8 text-primary" />,
+    icon: <Database className="h-8 w-8 icon-gradient-primary" />,
     title: "Database Management",
     description: "Design and optimize database schemas for efficient data storage and retrieval. Manage both SQL (MySQL, PostgreSQL) and NoSQL (MongoDB) databases, ensuring data integrity and security.",
   },
@@ -43,7 +43,7 @@ export default function AboutSection() {
           </div>
         </div>
         <div>
-          <h3 className="font-headline text-lg font-medium text-primary">About Me</h3>
+          <h3 className="font-headline text-lg font-medium text-gradient-primary">About Me</h3>
           <h2 className="mt-2 font-headline text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
             A Passionate Developer and Innovator
           </h2>

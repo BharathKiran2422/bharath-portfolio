@@ -13,7 +13,7 @@ export default function Footer() {
       <div className="container mx-auto px-4 py-8 md:px-6">
         <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
           <div className="flex items-center gap-2">
-            <Mountain className="h-6 w-6 text-primary" />
+            <Mountain className="h-6 w-6 icon-gradient-primary" />
             <span className="font-headline text-lg font-bold">Bharath Kiran</span>
           </div>
           <p className="text-sm text-muted-foreground">

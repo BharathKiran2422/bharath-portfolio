@@ -57,7 +57,7 @@ export default function Header() {
     >
       <div className="container flex h-20 items-center justify-between px-4 md:px-6">
         <Link href="/" className="flex items-center gap-2 font-headline text-xl font-bold">
-          <Mountain className="h-8 w-8 text-primary" />
+          <Mountain className="h-8 w-8 icon-gradient-primary" />
           <span>Bharath Kiran</span>
         </Link>
 
@@ -77,7 +77,7 @@ export default function Header() {
                 <SheetHeader>
                   <SheetTitle>
                     <Link href="/" className="flex items-center gap-2 font-headline text-xl font-bold">
-                      <Mountain className="h-8 w-8 text-primary" />
+                      <Mountain className="h-8 w-8 icon-gradient-primary" />
                       <span>Bharath Kiran</span>
                     </Link>
                   </SheetTitle>

@@ -70,3 +70,21 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer utilities {
+  .text-gradient-primary {
+    @apply bg-gradient-to-r from-primary to-foreground bg-clip-text text-transparent;
+  }
+  .icon-gradient-primary {
+    @apply bg-gradient-to-br from-purple-700 to-white text-transparent bg-clip-text;
+  }
+  .dark .icon-gradient-primary {
+    @apply from-purple-500 to-white;
+  }
+  .button-gradient-primary {
+    @apply bg-gradient-to-r from-purple-700 to-purple-500 text-white;
+  }
+  .dark .button-gradient-primary {
+    @apply from-purple-600 to-purple-400;
+  }
+}

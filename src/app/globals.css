@@ -62,12 +62,16 @@
 @layer base {
   * {
     @apply border-border;
+    cursor: none;
   }
   html {
     @apply scroll-smooth;
   }
   body {
     @apply bg-background text-foreground;
+  }
+  a, button, [role="button"] {
+    cursor: none;
   }
 }
 

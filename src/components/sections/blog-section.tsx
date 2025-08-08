@@ -75,7 +75,7 @@ export default function BlogSection() {
     Autoplay({ delay: 4000, stopOnInteraction: false, stopOnMouseEnter: true })
   );
 
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [autoplay.current]);
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: 'start' }, [autoplay.current]);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
 
@@ -129,7 +129,7 @@ export default function BlogSection() {
           <div className="embla__container">
             {blogPosts.map((post, index) => (
               <div key={index} className="embla__slide group p-4">
-                <div className="embla__slide__inner">
+                <div className="embla__slide__inner h-full">
                   <Card className="flex flex-col h-full overflow-hidden transition-all duration-300">
                     <CardHeader className="p-0 relative h-64 w-full">
                       <Image
@@ -154,8 +154,8 @@ export default function BlogSection() {
                         </div>
                       </div>
                     </CardHeader>
-                    <CardContent className="p-6 flex-grow transition-opacity duration-300 group-hover:opacity-0">
-                      <CardTitle className="font-headline text-xl group-hover:text-primary">
+                    <CardContent className="p-6 flex-grow flex flex-col transition-opacity duration-300 group-hover:opacity-0">
+                      <CardTitle className="font-headline text-xl group-hover:text-primary flex-grow">
                         {post.title}
                       </CardTitle>
                     </CardContent>

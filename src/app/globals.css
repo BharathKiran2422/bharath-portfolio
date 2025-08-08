@@ -73,10 +73,10 @@
 
 @layer utilities {
   .text-gradient-primary {
-    @apply bg-gradient-to-r from-primary to-foreground bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-primary/80 to-foreground bg-clip-text text-transparent;
   }
   .icon-gradient-primary {
-    @apply bg-gradient-to-br from-purple-700 to-white text-transparent bg-clip-text;
+    @apply bg-gradient-to-br from-purple-700 to-foreground text-transparent bg-clip-text;
   }
   .dark .icon-gradient-primary {
     @apply from-purple-500 to-white;

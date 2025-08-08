@@ -76,10 +76,10 @@
     @apply bg-gradient-to-r from-primary/80 to-foreground bg-clip-text text-transparent;
   }
   .icon-gradient-primary {
-    @apply bg-gradient-to-br from-purple-700 to-foreground text-transparent bg-clip-text;
+    @apply text-primary;
   }
   .dark .icon-gradient-primary {
-    @apply from-purple-500 to-white;
+    @apply text-primary;
   }
   .button-gradient-primary {
     @apply bg-gradient-to-r from-purple-700 to-purple-500 text-white;

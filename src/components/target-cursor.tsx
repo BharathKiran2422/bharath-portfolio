@@ -4,6 +4,7 @@
 import { useEffect, useRef, useCallback, useMemo, FC } from "react";
 import { gsap } from "gsap";
 import "@/styles/target-cursor.css";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface TargetCursorProps {
   targetSelector?: string;
@@ -16,6 +17,7 @@ const TargetCursor: FC<TargetCursorProps> = ({
   spinDuration = 2,
   hideDefaultCursor = true,
 }) => {
+  const isMobile = useIsMobile();
   const cursorRef = useRef<HTMLDivElement>(null);
   const cornersRef = useRef<NodeListOf<HTMLDivElement> | null>(null);
   const spinTl = useRef<gsap.core.Timeline | null>(null);
@@ -40,7 +42,7 @@ const TargetCursor: FC<TargetCursorProps> = ({
   }, []);
 
   useEffect(() => {
-    if (!cursorRef.current) return;
+    if (isMobile || !cursorRef.current) return;
 
     let originalCursor = '';
     if (typeof window !== 'undefined') {
@@ -322,10 +324,10 @@ const TargetCursor: FC<TargetCursorProps> = ({
         document.body.style.cursor = originalCursor;
       }
     };
-  }, [targetSelector, spinDuration, moveCursor, constants, hideDefaultCursor]);
+  }, [targetSelector, spinDuration, moveCursor, constants, hideDefaultCursor, isMobile]);
 
   useEffect(() => {
-    if (!cursorRef.current || !spinTl.current) return;
+    if (isMobile || !cursorRef.current || !spinTl.current) return;
 
     if (spinTl.current.isActive()) {
       spinTl.current.kill();
@@ -333,7 +335,9 @@ const TargetCursor: FC<TargetCursorProps> = ({
         .timeline({ repeat: -1 })
         .to(cursorRef.current, { rotation: "+=360", duration: spinDuration, ease: "none" });
     }
-  }, [spinDuration]);
+  }, [spinDuration, isMobile]);
+  
+  if (isMobile) return null;
 
   return (
     <div ref={cursorRef} className="target-cursor-wrapper">
